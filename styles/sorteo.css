@@ -1,0 +1,10 @@
+.modal {
+    display: none;
+    width: 100%;
+    background-color: aqua;
+}
+
+.modalContent {
+    background-color: black;
+    width: 50%;
+}
