@@ -4,36 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteo 10 entradas</title>
+    <title>Sorteo 10 Smartphones</title>
     <link rel="stylesheet" href="styles/sorteo.css">
+
 </head>
 
 <body>
     <header>
-
+        <img src="/assets/sorteoexpress logo 2.png" alt="Logo de Sorteo">
+        <h1>VOLTREX SMARTPHONES</h1>
+        <img src="/assets/voltrex entero.png" alt="Imagen de Voltrex">
     </header>
 
-    <body>
-        <form method="post" id="formulario">
-            <input type="text" id="nombre" placeholder="Nombre">
-            <input type="text" id="apellidos" placeholder="Apellidos">
-            <button id="participar" type="submit">Participar En El Sorteo</button>
-        </form>
+    <form method="post" id="formulario">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="apellidos" placeholder="Apellidos" required>
+        <input type="email" id="email" placeholder="Correo Electrónico" required>
+        <button id="participar" type="submit">Participar En El Sorteo</button>
+    </form>
 
-        <div class="modal" id="modal">
-            <div id="modalContent" class="modalContent">
-                <img src="/">
-                <p>HAS PARTICIPADO EN EL SORTEO</p>
-                <p>¡MUCHA SUERTE!</p>
-            </div>
+    <!-- INICIAR SESION CON GOOGLE -->
+    <div id="g_id_onload" data-client_id="606576321819-uuqgovhm3rq6u99fgltkopde58huta69.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse" data-auto_prompt="false">
+    </div>
+
+    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
+        data-shape="rectangular" data-logo_alignment="left">
+    </div>
+
+    <div class="modal" id="modal">
+        <div id="modalContent" class="modalContent">
+            <img src="#" alt="Imagen del Modal"> <!-- Asegúrate de agregar una fuente válida aquí -->
+            <p>HAS PARTICIPADO EN EL SORTEO</p>
+            <p>¡MUCHA SUERTE!</p>
         </div>
-        <script src="scripts/sorteo.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    </div>
 
-        <script type="text/javascript">
-            emailjs.init('CyMz5fdCP-83lukkp')
-        </script>
-    </body>
+    <script src="scripts/sorteo.js"></script>
+    <script>
+        //FUNCION PARA AUTOCOMPLETAR LOS CAMPOS DEL FORMULARIO CON GOOGLE
+        function handleCredentialResponse(response) {
+            // Decodifica el token JWT y extrae los datos
+            const data = jwt_decode(response.credential);
+
+            console.log("Data decoded from JWT:", data); // Verifica la salida
+
+            document.getElementById("nombre").value = data.given_name || ''; // Manejo de posibles valores nulos
+            document.getElementById("apellidos").value = data.family_name || '';
+            document.getElementById("email").value = data.email || '';
+
+
+        }
+
+        // Decodifica el token JWT (que está en formato base64)
+        function jwt_decode(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            return JSON.parse(jsonPayload);
+        }
+    </script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init('CyMz5fdCP-83lukkp');
+    </script>
+
+    <footer>
+        <!-- Puedes agregar contenido para el pie de página aquí si es necesario -->
+    </footer>
 </body>
 
 </html>

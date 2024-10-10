@@ -2,6 +2,8 @@ const modal = document.getElementById("modal");
 const botonParticipar = document.getElementById("participar");
 const formulario = document.getElementById("formulario");
 
+
+
 formulario.addEventListener("submit", function (event) {
     //MODAL CONFIRMAR PARTICIPACION
     modal.style.display = "block";
@@ -32,3 +34,5 @@ window.addEventListener("click", function (event) {
         modal.style.display = "none";
     }
 });
+
+
