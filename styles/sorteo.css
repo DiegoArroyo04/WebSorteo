@@ -1,3 +1,25 @@
+header {
+    background-color: #003366;
+    /* Color de fondo */
+    color: #FFFFFF;
+    /* Color del texto */
+    padding: 20px;
+    /* Espaciado interno */
+    text-align: center;
+    /* Centrar el contenido */
+    font-family: 'Roboto', sans-serif;
+    /* Tipografía */
+}
+
+header img {
+    max-width: 100px;
+    /* Ancho máximo del logo */
+    height: auto;
+    /* Mantener la proporción */
+}
+
+
+
 .modal {
     display: none;
     width: 100%;
