@@ -14,12 +14,11 @@
     </header>
 
     <body>
-
-        <input type="text" id="nombre" placeholder="Nombre">
-        <input type="text" id="apellidos" placeholder="Apellidos">
-        <button id="participar">Participar En El Sorteo</button>
-
-
+        <form method="post" id="formulario">
+            <input type="text" id="nombre" placeholder="Nombre">
+            <input type="text" id="apellidos" placeholder="Apellidos">
+            <button id="participar" type="submit">Participar En El Sorteo</button>
+        </form>
 
         <div class="modal" id="modal">
             <div id="modalContent" class="modalContent">
@@ -29,6 +28,11 @@
             </div>
         </div>
         <script src="scripts/sorteo.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+        <script type="text/javascript">
+            emailjs.init('CyMz5fdCP-83lukkp')
+        </script>
     </body>
 </body>
 
