@@ -8,17 +8,26 @@ formulario.addEventListener("submit", function (event) {
     //MODAL CONFIRMAR PARTICIPACION
     modal.style.display = "block";
     //REGISTRAR EN BASE DE DATOS
+    const nombre = document.getElementById("nombre").value;
+    const apellidos = document.getElementById("apellidos").value;
+    const email = document.getElementById("email").value;
 
-    // Hacer la solicitud al backend para hacer el ping a MongoDB
-    fetch('/pingMongo')
+    // Enviar los datos al servidor para guardarlos en MongoDB
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nombre, apellidos, email }),
+    })
         .then(response => response.text())
         .then(data => {
             console.log(data);
-            alert(data);  // Mostrar el resultado del ping
+            alert(data);  // Mostrar mensaje de éxito o error al usuario
         })
         .catch(error => {
-            console.error("Error al hacer ping:", error);
-            alert("Error al hacer ping a MongoDB.");
+            console.error("Error al registrar usuario:", error);
+            alert("Error al registrar usuario.");
         });
 
 

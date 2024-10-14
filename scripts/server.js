@@ -1,11 +1,13 @@
-// server.js
-
 const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const app = express();
-const port = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
+const path = require('path');
 
-const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSorteos";
+const app = express();
+const port = 3000;
+
+// Conexión a MongoDB (Cambia tu password aquí)
+const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -14,30 +16,47 @@ const client = new MongoClient(uri, {
     }
 });
 
-// Middleware para parsear JSON (si lo necesitas)
+// Middleware para procesar datos JSON y formularios
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/pingMongo', async (req, res) => {
+// Sirviendo archivos estáticos desde diferentes carpetas
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
+app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
+app.use('/styles', express.static(path.join(__dirname, '../styles')));
+
+// Ruta principal para servir el archivo `index.html` desde la raíz
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'));  // Asegurarnos de que se esté buscando en la raíz
+});
+
+// Ruta para manejar el registro del formulario
+app.post('/register', async (req, res) => {
     try {
-        // Conectar a MongoDB
         await client.connect();
+        const database = client.db("Sorteos");
+        const collection = database.collection("voltrex");
 
-        // Hacer ping a la base de datos
-        await client.db("Sorteos").command({ ping: 1 });
-        console.log("Ping exitoso. Conexión exitosa a MongoDB.");
+        const { nombre, apellidos, email } = req.body;
 
-        // Enviar respuesta exitosa
-        res.status(200).send("Ping exitoso. Conexión exitosa a MongoDB.");
-    } catch (error) {
-        console.error("Error al hacer ping a MongoDB:", error);
-        res.status(500).send("Error al hacer ping a MongoDB.");
+        const result = await collection.insertOne({
+            nombre,
+            apellidos,
+            email,
+            fechaRegistro: new Date()
+        });
+
+        console.log("Usuario registrado:", result.insertedId);
+        res.send("Registro exitoso");
+    } catch (err) {
+        console.error("Error al registrar el usuario:", err);
+        res.status(500).send("Error al registrar el usuario");
     } finally {
-        // Cerrar la conexión
         await client.close();
     }
 });
 
-// Levantar el servidor
+// Iniciar el servidor
 app.listen(port, () => {
-    console.log(`Servidor escuchando en el puerto ${port}`);
+    console.log(`Servidor escuchando en http://localhost:${port}`);
 });
