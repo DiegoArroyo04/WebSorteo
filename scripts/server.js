@@ -5,7 +5,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const uri = "mongodb+srv://diegoarroyogonzalez04:<1234>@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSorteos";
+const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSorteos";
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
