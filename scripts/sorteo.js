@@ -26,6 +26,7 @@ formulario.addEventListener("submit", function (event) {
             // Send a ping to confirm a successful connection
             await client.db("Sorteos").command({ ping: 1 });
             console.log("Pinged your deployment. You successfully connected to MongoDB!");
+            alert("Ping exitoso. Conexión exitosa a MongoDB.")
         } finally {
             // Ensures that the client will close when you finish/error
             await client.close();
