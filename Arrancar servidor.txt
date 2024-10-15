@@ -1,2 +1,1 @@
-http-server -p 3000
-node scripts/server.js
+http-server -p 30
