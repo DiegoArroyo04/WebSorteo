@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "scripts/server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/register",
+            "methods": [
+                "POST"
+            ],
+            "dest": "scripts/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "scripts/server.js"
+        }
+    ]
+}

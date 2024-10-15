@@ -52,9 +52,10 @@ app.post('/register', async (req, res) => {
         console.error("Error al registrar el usuario:", err);
         res.status(500).send("Error al registrar el usuario");
     } finally {
-        await client.close();
+        // No cerrar la conexión aquí para reutilizarla
     }
 });
+
 
 // Iniciar el servidor
 app.listen(port, () => {
