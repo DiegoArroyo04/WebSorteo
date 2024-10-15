@@ -17,13 +17,7 @@ formulario.addEventListener("submit", function (event) {
     const email = document.getElementById("email").value;
 
     // Enviar los datos al servidor para guardarlos en MongoDB
-    const isProduction = window.location.hostname !== 'localhost'; // Detectar si estamos en producción
-
-    const url = isProduction ?
-        `https://web-sorteo.vercel.app/register` :  // Cambia esto por tu URL real de Vercel
-        `http://localhost:3000/register`;  // O la URL de tu servidor local
-
-    fetch(url, {
+    fetch('/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

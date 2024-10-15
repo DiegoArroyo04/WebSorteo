@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000; // Cambiar a la variable de entorno de Vercel
+const port = 3000;
 
-// Conexión a MongoDB usando la variable de entorno
-const uri = process.env.MONGODB_URI; // Asegúrate de que esta variable esté configurada en Vercel
+// Conexión a MongoDB 
+const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -20,14 +20,14 @@ const client = new MongoClient(uri, {
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Sirviendo archivos estáticos
+// Sirviendo archivos estáticos desde diferentes carpetas para que carguen correctamente
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
 app.use('/styles', express.static(path.join(__dirname, '../styles')));
 
-// Ruta principal para servir el archivo `index.html`
+// Ruta principal para servir el archivo `index.html` desde la raíz
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, '../index.html'));  // Asegurarnos de que se esté buscando en la raíz
 });
 
 // Ruta para manejar el registro del formulario
@@ -56,12 +56,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Iniciar el servidor (no es necesario en Vercel)
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(port, () => {
-        console.log(`Servidor escuchando en http://localhost:${port}`);
-    });
-}
-
-module.exports = app; // Exportar app para Vercel
-
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Servidor escuchando en http://localhost:${port}`);
+});
