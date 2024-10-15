@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000; // Cambia el puerto a uno dinámico para Vercel
+const port = process.env.PORT || 3000;  // Cambiar a la variable de entorno de Vercel
 
 // Conexión a MongoDB 
 const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority";
@@ -25,7 +25,7 @@ app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
 app.use('/styles', express.static(path.join(__dirname, '../styles')));
 
-// Ruta principal para servir el archivo `index.html` desde la raíz
+// Ruta principal para servir el archivo `index.html`
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
@@ -52,16 +52,15 @@ app.post('/register', async (req, res) => {
         console.error("Error al registrar el usuario:", err);
         res.status(500).send("Error al registrar el usuario");
     } finally {
-        // Comentamos el cierre aquí para mantener la conexión abierta
+        await client.close();
     }
 });
 
-// Manejar el error 404
-app.use((req, res) => {
-    res.status(404).send("No se encontró la página");
-});
+// Iniciar el servidor (no es necesario en Vercel)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Servidor escuchando en http://localhost:${port}`);
+    });
+}
 
-// Iniciar el servidor
-app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
-});
+module.exports = app;  // Exportar app para Vercel
