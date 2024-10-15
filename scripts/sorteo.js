@@ -8,6 +8,7 @@ const formulario = document.getElementById("formulario");
 
 
 formulario.addEventListener("submit", function (event) {
+    event.preventDefault();
     //MODAL CONFIRMAR PARTICIPACION
     modal.style.display = "block";
     //REGISTRAR EN BASE DE DATOS
@@ -35,7 +36,7 @@ formulario.addEventListener("submit", function (event) {
 
 
 
-    //MANDAR CORREO CONFIRMACION
+    /*MANDAR CORREO CONFIRMACION
     event.preventDefault();
     const serviceID = 'service_dy20kyj';
     const templateID = 'template_pz76sxi';
@@ -48,7 +49,7 @@ formulario.addEventListener("submit", function (event) {
 
             alert(JSON.stringify(err));
         });
-
+    */
 });
 
 //EVENTO PARA CERRAR EL MODAL AL PULSAR FUERA
