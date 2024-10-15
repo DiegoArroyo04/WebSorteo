@@ -35,7 +35,7 @@ formulario.addEventListener("submit", function (event) {
 
 
 
-    //MANDAR CORREO CONFIRMACION
+    /*MANDAR CORREO CONFIRMACION comentadooooo
     event.preventDefault();
     const serviceID = 'service_dy20kyj';
     const templateID = 'template_pz76sxi';
@@ -48,9 +48,9 @@ formulario.addEventListener("submit", function (event) {
 
             alert(JSON.stringify(err));
         });
-
+        */
 });
-
+deberias de funcionar con exito pull
 //EVENTO PARA CERRAR EL MODAL AL PULSAR FUERA
 window.addEventListener("click", function (event) {
     if (event.target == modal) {
