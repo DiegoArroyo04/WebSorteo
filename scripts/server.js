@@ -1,10 +1,20 @@
 const express = require('express');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const bodyParser = require('body-parser');
 const path = require('path');
-const { MongoClient } = require('mongodb');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; // Cambiar a la variable de entorno de Vercel
+
+// Conexión a MongoDB usando la variable de entorno
+const uri = process.env.MONGODB_URI; // Asegúrate de que esta variable esté configurada en Vercel
+const client = new MongoClient(uri, {
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    }
+});
 
 // Middleware para procesar datos JSON y formularios
 app.use(express.json());
@@ -23,15 +33,11 @@ app.get('/', (req, res) => {
 // Ruta para manejar el registro del formulario
 app.post('/register', async (req, res) => {
     try {
-        const { nombre, apellidos, email } = req.body;
-
-        // Usar la URI del plugin de MongoDB de Vercel
-        const uri = process.env.MONGODB_URI;
-
-        const client = new MongoClient(uri);
         await client.connect();
         const database = client.db("Sorteos");
         const collection = database.collection("voltrex");
+
+        const { nombre, apellidos, email } = req.body;
 
         const result = await collection.insertOne({
             nombre,
@@ -45,10 +51,12 @@ app.post('/register', async (req, res) => {
     } catch (err) {
         console.error("Error al registrar el usuario:", err);
         res.status(500).send("Error al registrar el usuario");
+    } finally {
+        await client.close();
     }
 });
 
-// Iniciar el servidor (solo para pruebas locales)
+// Iniciar el servidor (no es necesario en Vercel)
 if (process.env.NODE_ENV !== 'production') {
     app.listen(port, () => {
         console.log(`Servidor escuchando en http://localhost:${port}`);
@@ -56,3 +64,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = app; // Exportar app para Vercel
+
