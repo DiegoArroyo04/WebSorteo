@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 
 // Conexión a MongoDB usando la URI desde una variable de entorno
 const uri = process.env.MONGODB_URI;  // Aquí usaremos la variable de entorno
+console.log("Conexión a MongoDB con URI:", process.env.MONGODB_URI);
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -33,7 +34,7 @@ app.get('/', (req, res) => {
 // Ruta para manejar el registro del formulario
 app.post('/register', async (req, res) => {
     try {
-        await client.connect(); // Conectarse a la base de datos
+        await client.connect();  // Conectarse a la base de datos
         const database = client.db("Sorteos");
         const collection = database.collection("voltrex");
 
@@ -49,12 +50,13 @@ app.post('/register', async (req, res) => {
         console.log("Usuario registrado:", result.insertedId);
         res.send("Registro exitoso");
     } catch (err) {
-        console.error("Error al registrar el usuario:", err);
-        res.status(500).send("Error al registrar el usuario");
+        console.error("Error al registrar el usuario:", err.message);
+        res.status(500).send("Error al registrar el usuario: " + err.message);
     } finally {
         await client.close();  // Cierra la conexión a la base de datos
     }
 });
+
 
 // Exportar la aplicación para que Vercel la pueda utilizar
 module.exports = app;
