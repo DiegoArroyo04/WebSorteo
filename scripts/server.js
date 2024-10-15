@@ -6,7 +6,8 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const uri = process.env.MONGODB_URI; // Asegúrate de que esté configurado en Vercel
+// Usar la URI de conexión proporcionada por Vercel
+const uri = process.env.MONGODB_URI; // Verifica que la variable esté configurada
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -15,13 +16,21 @@ const client = new MongoClient(uri, {
     }
 });
 
+// Middleware para procesar datos JSON y formularios
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Sirviendo archivos estáticos
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
+app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
+app.use('/styles', express.static(path.join(__dirname, '../styles')));
+
+// Ruta principal para servir el archivo `index.html`
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
 
+// Ruta para manejar el registro del formulario
 app.post('/register', async (req, res) => {
     try {
         await client.connect();
@@ -54,4 +63,4 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-module.exports = app;
+module.exports = app; // Exportar app para Vercel

@@ -20,7 +20,7 @@ formulario.addEventListener("submit", function (event) {
     const isProduction = window.location.hostname !== 'localhost'; // Detectar si estamos en producción
 
     const url = isProduction ?
-        `https://web-sorteo.vercel.app/` :  // Cambia esto por tu URL real de Vercel
+        `https://web-sorteo.vercel.app/register` :  // Cambia esto por tu URL real de Vercel
         `http://localhost:3000/register`;  // O la URL de tu servidor local
 
     fetch(url, {
