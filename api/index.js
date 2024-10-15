@@ -25,10 +25,10 @@ app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
 app.use('/styles', express.static(path.join(__dirname, '../styles')));
 
-// Ruta principal para servir `index.html`
+// Ruta para servir el archivo `index.html` desde la raíz
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
-});
+    res.send('Servidor Express funcionando en Vercel');
+})
 
 // Ruta para manejar el registro del formulario
 app.post('/register', async (req, res) => {
@@ -55,6 +55,9 @@ app.post('/register', async (req, res) => {
         await client.close();  // Cierra la conexión a la base de datos
     }
 });
+
+// Exportar la aplicación para que Vercel la pueda utilizar
+module.exports = app;
 
 // Iniciar el servidor
 app.listen(port, () => {
