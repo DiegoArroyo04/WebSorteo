@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-// Conexión a MongoDB (Cambia tu password aquí)
+// Conexión a MongoDB 
 const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
     serverApi: {
@@ -20,7 +20,7 @@ const client = new MongoClient(uri, {
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Sirviendo archivos estáticos desde diferentes carpetas
+// Sirviendo archivos estáticos desde diferentes carpetas para que carguen correctamente
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
 app.use('/styles', express.static(path.join(__dirname, '../styles')));

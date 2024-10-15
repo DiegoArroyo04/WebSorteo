@@ -1,3 +1,5 @@
+import { inject } from "@vercel/analytics"
+
 const modal = document.getElementById("modal");
 const botonParticipar = document.getElementById("participar");
 const formulario = document.getElementById("formulario");
