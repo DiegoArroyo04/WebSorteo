@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000;  // Cambiar a la variable de entorno de Vercel
+const port = process.env.PORT || 3000;
 
-// Conexión a MongoDB 
-const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority";
+// Usar la URI de conexión proporcionada por Vercel
+const uri = process.env.MONGODB_URI; // Verifica que la variable esté configurada
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -63,5 +63,4 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-module.exports = app;  // Exportar app para Vercel
-
+module.exports = app; // Exportar app para Vercel
