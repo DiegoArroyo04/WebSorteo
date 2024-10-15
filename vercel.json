@@ -15,6 +15,13 @@
             "dest": "scripts/server.js"
         },
         {
+            "src": "/",
+            "methods": [
+                "GET"
+            ],
+            "dest": "scripts/server.js"
+        },
+        {
             "src": "/(.*)",
             "dest": "scripts/server.js"
         }
