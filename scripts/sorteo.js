@@ -1,5 +1,5 @@
 //ANALITICAS VERCEL 
-import { inject } from "@vercel/analytics"
+import { inject } from "@vercel/analytics";
 function MyApp({ Component, pageProps }) {
     // Inyecta Vercel Analytics en tu aplicación
     inject();
