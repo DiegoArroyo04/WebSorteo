@@ -1,13 +1,5 @@
-//ANALITICAS VERCEL 
-import { inject } from "@vercel/analytics";
-function MyApp({ Component, pageProps }) {
-    // Inyecta Vercel Analytics en tu aplicación
-    inject();
 
-    return <Component {...pageProps} />;
-}
 
-export default MyApp;
 
 const modal = document.getElementById("modal");
 const botonParticipar = document.getElementById("participar");
