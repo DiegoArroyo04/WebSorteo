@@ -1,5 +1,13 @@
+//ANALITICAS VERCEL 
+import { inject } from "@vercel/analytics"
+function MyApp({ Component, pageProps }) {
+    // Inyecta Vercel Analytics en tu aplicación
+    inject();
 
+    return <Component {...pageProps} />;
+}
 
+export default MyApp;
 
 const modal = document.getElementById("modal");
 const botonParticipar = document.getElementById("participar");
@@ -35,7 +43,7 @@ formulario.addEventListener("submit", function (event) {
 
 
 
-    /*MANDAR CORREO CONFIRMACION comentadooooo
+    //MANDAR CORREO CONFIRMACION
     event.preventDefault();
     const serviceID = 'service_dy20kyj';
     const templateID = 'template_pz76sxi';
@@ -48,9 +56,9 @@ formulario.addEventListener("submit", function (event) {
 
             alert(JSON.stringify(err));
         });
-        */
+
 });
-deberias de funcionar con exito pull
+
 //EVENTO PARA CERRAR EL MODAL AL PULSAR FUERA
 window.addEventListener("click", function (event) {
     if (event.target == modal) {

@@ -4,11 +4,10 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-// Conexión a MongoDB usando la URI desde una variable de entorno
-const uri = process.env.MONGODB_URI;  // Aquí usaremos la variable de entorno
-console.log("Conexión a MongoDB con URI:", process.env.MONGODB_URI);
+// Conexión a MongoDB 
+const uri = "mongodb+srv://diegoarroyogonzalez04:1234@clustersorteos.vsy0f.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -21,20 +20,20 @@ const client = new MongoClient(uri, {
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Sirviendo archivos estáticos
+// Sirviendo archivos estáticos desde diferentes carpetas para que carguen correctamente
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/scripts', express.static(path.join(__dirname, '../scripts')));
 app.use('/styles', express.static(path.join(__dirname, '../styles')));
 
-// Ruta para servir el archivo `index.html` desde la raíz
+// Ruta principal para servir el archivo `index.html` desde la raíz
 app.get('/', (req, res) => {
-    res.send('Servidor Express funcionando en Vercel');
-})
+    res.sendFile(path.join(__dirname, '../index.html'));  // Asegurarnos de que se esté buscando en la raíz
+});
 
 // Ruta para manejar el registro del formulario
 app.post('/register', async (req, res) => {
     try {
-        await client.connect();  // Conectarse a la base de datos
+        await client.connect();
         const database = client.db("Sorteos");
         const collection = database.collection("voltrex");
 
@@ -50,16 +49,12 @@ app.post('/register', async (req, res) => {
         console.log("Usuario registrado:", result.insertedId);
         res.send("Registro exitoso");
     } catch (err) {
-        console.error("Error al registrar el usuario:", err.message);
-        res.status(500).send("Error al registrar el usuario: " + err.message);
+        console.error("Error al registrar el usuario:", err);
+        res.status(500).send("Error al registrar el usuario");
     } finally {
-        await client.close();  // Cierra la conexión a la base de datos
+        await client.close();
     }
 });
-
-
-// Exportar la aplicación para que Vercel la pueda utilizar
-module.exports = app;
 
 // Iniciar el servidor
 app.listen(port, () => {
