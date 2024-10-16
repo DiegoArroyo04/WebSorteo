@@ -13,17 +13,37 @@
 
 <body>
     <header>
-        <img src="/assets/sorteoexpresslogo.png" alt="Logo de Sorteo">
-        <h1>VOLTREX SMARTPHONES</h1>
-        <img src="/assets/voltrexlogo.png" alt="Imagen de Voltrex">
+        <div class="logo">
+            <img src="/assets/sorteoexpresslogo.png" alt="Logo de Sorteo">
+        </div>
+        <div class="titulo">
+            <h1>VOLTREX SMARTPHONES</h1>
+        </div>
+        <div class="empresa">
+            <img src="/assets/voltrexlogo.png" alt="Imagen de Voltrex">
+        </div>
     </header>
+    <h2 class="tituloSorteo">Sorteo 10 Smartphones</h2>
+    <div class="publicidad">
 
-    <form method="get" id="formulario">
-        <input type="text" id="nombre" placeholder="Nombre" required>
-        <input type="text" id="apellidos" placeholder="Apellidos" required>
-        <input type="email" id="email" placeholder="Correo Electrónico" required>
-        <button id="participar" type="submit">Participar En El Sorteo</button>
-    </form>
+    </div>
+    <div class="mainContent">
+        <div class="publicidad">
+            <p>Publicidad</p>
+        </div>
+        <form method="get" id="formulario">
+
+            <input type="text" id="nombre" placeholder="Nombre" name="nombre" required>
+            <input type="text" id="apellidos" placeholder="Apellidos" required>
+            <input type="email" id="email" placeholder="Correo Electrónico" name="email" required>
+            <input type="number" id="telefono" placeholder="Teléfono" required>
+            <input type="text" id="ciudad" placeholder="Ciudad" required>
+            <button id="participar" type="submit">Participar En El Sorteo</button>
+        </form>
+        <div class="publicidad">
+            <p>Publicidad</p>
+        </div>
+    </div>
 
     <!-- INICIAR SESION CON GOOGLE -->
     <div id="g_id_onload" data-client_id="606576321819-uuqgovhm3rq6u99fgltkopde58huta69.apps.googleusercontent.com"
@@ -41,6 +61,28 @@
             <p>¡MUCHA SUERTE!</p>
         </div>
     </div>
+
+    <footer>
+
+        <div class="footer-logo">
+            <img src="/assets/sorteoexpresslogo.png" alt="Logo de SorteoXpress" />
+        </div>
+        <div class="footer-links">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+                <li><a href="#">Sorteo</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Términos y Condiciones</a></li>
+                <li><a href="#">Política de Privacidad</a></li>
+            </ul>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2024 SorteoXpress. Todos los derechos reservados.</p>
+            <p>Desarrollado por Diego Arroyo González</p>
+        </div>
+
+    </footer>
+
 
     <script src="scripts/sorteo.js"></script>
     <script>
@@ -80,9 +122,7 @@
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
 
-    <footer>
-        <!-- Puedes agregar contenido para el pie de página aquí si es necesario -->
-    </footer>
+
 </body>
 
 </html>

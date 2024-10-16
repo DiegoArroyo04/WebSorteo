@@ -15,6 +15,8 @@ formulario.addEventListener("submit", function (event) {
     const nombre = document.getElementById("nombre").value;
     const apellidos = document.getElementById("apellidos").value;
     const email = document.getElementById("email").value;
+    const telefono = document.getElementById("telefono").value;
+    const ciudad = document.getElementById("ciudad").value;
 
     // Enviar los datos al servidor para guardarlos en MongoDB
     fetch('/register', {
@@ -22,7 +24,7 @@ formulario.addEventListener("submit", function (event) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nombre, apellidos, email }),
+        body: JSON.stringify({ nombre, apellidos, email, telefono, ciudad }),
     })
         .then(response => response.text())
         .then(data => {
@@ -36,10 +38,10 @@ formulario.addEventListener("submit", function (event) {
 
 
 
-    /*MANDAR CORREO CONFIRMACION
+    /* MANDAR EMAIL
     event.preventDefault();
     const serviceID = 'service_dy20kyj';
-    const templateID = 'template_pz76sxi';
+    const templateID = 'template_w55i12k';
 
     emailjs.sendForm(serviceID, templateID, this)
         .then(() => {
