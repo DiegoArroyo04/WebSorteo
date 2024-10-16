@@ -23,10 +23,8 @@
             <img src="/assets/voltrexlogo.png" alt="Imagen de Voltrex">
         </div>
     </header>
-    <h2 class="tituloSorteo">Sorteo 10 Smartphones</h2>
-    <div class="publicidad">
+    <h2 class="tituloSorteo">Sorteo 10 Smartphones VOLTREX</h2>
 
-    </div>
     <div class="mainContent">
         <div class="publicidad">
             <p>Publicidad</p>
@@ -39,20 +37,23 @@
             <input type="number" id="telefono" placeholder="Teléfono" required>
             <input type="text" id="ciudad" placeholder="Ciudad" required>
             <button id="participar" type="submit">Participar En El Sorteo</button>
+            <!-- INICIAR SESION CON GOOGLE -->
+            <div id="g_id_onload"
+                data-client_id="606576321819-uuqgovhm3rq6u99fgltkopde58huta69.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse" data-auto_prompt="false">
+            </div>
+
+            <div id="botonGoogle" class="g_id_signin" data-type="standard" data-size="large" data-theme="filled_blue"
+                data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
+
+            </div>
         </form>
         <div class="publicidad">
             <p>Publicidad</p>
         </div>
     </div>
 
-    <!-- INICIAR SESION CON GOOGLE -->
-    <div id="g_id_onload" data-client_id="606576321819-uuqgovhm3rq6u99fgltkopde58huta69.apps.googleusercontent.com"
-        data-callback="handleCredentialResponse" data-auto_prompt="false">
-    </div>
 
-    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
-        data-shape="rectangular" data-logo_alignment="left">
-    </div>
 
     <div class="modal" id="modal">
         <div id="modalContent" class="modalContent">
@@ -96,7 +97,8 @@
             document.getElementById("nombre").value = data.given_name || ''; // Manejo de posibles valores nulos
             document.getElementById("apellidos").value = data.family_name || '';
             document.getElementById("email").value = data.email || '';
-
+            // Ocultar el botón de Google después de autocompletar los campos
+            document.getElementById("botonGoogle").style.display = "none";
 
         }
 
@@ -110,6 +112,7 @@
 
             return JSON.parse(jsonPayload);
         }
+
     </script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>

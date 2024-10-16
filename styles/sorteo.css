@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +8,7 @@
 
 body {
     background-color: #F0F0F0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
 }
 
 header {
@@ -21,10 +23,9 @@ header {
 }
 
 header img {
-    max-width: 100px;
-    /* Ancho máximo del logo */
-    height: auto;
-    /* Mantener la proporción */
+    max-width: 150px;
+    max-height: 150px;
+
 }
 
 
@@ -36,18 +37,18 @@ header img {
     margin: 0;
 }
 
-/* Encabezado del sorteo */
+
 .tituloSorteo {
     text-align: center;
-    font-size: 3vw;
+    font-size: 2vw;
     font-weight: bold;
     color: #003366;
-    margin: 2% 0;
+    margin: 1.5% 0;
 }
 
 .mainContent {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     width: 90%;
     margin: 0 auto;
     padding: 2%;
@@ -64,7 +65,9 @@ form {
     padding-bottom: 5%;
     padding-top: 5%;
     border-radius: 10px;
-    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
+    height: 100%;
+    margin: 0% 3%;
 }
 
 form input,
@@ -72,11 +75,14 @@ form button {
     width: 80%;
     margin: 1% 0;
     padding: 1%;
-    border: 1px solid #00AEEF;
+    border: 1px solid #003366;
     border-radius: 5px;
     font-size: 1.3vw;
 }
 
+form input {
+    color: #003366;
+}
 
 form button {
     background-color: #FF6F00;
@@ -85,8 +91,16 @@ form button {
     cursor: pointer;
 }
 
+form input:focus {
+
+    outline: none;
+    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
+
+}
+
+
 form button:hover {
-    background-color: #003366;
+    background-color: #CC5700;
 }
 
 form input::placeholder {
@@ -94,47 +108,52 @@ form input::placeholder {
 
 }
 
-/* Publicidad */
+
 .publicidad {
     flex-basis: 20%;
     background-color: #F0F0F0;
-    /* Gris claro */
-    height: auto;
-    margin: 0 2%;
+    text-align: center;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
+    min-height: 100%;
+
+
 }
+
+/* Estilo personalizado del botón de Google */
+
+
+
 
 footer {
     background-color: #003366;
-    /* Azul oscuro */
     color: #FFFFFF;
-    /* Texto blanco */
     padding: 2% 5%;
     text-align: center;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    align-items: center;
     width: 100%;
-    margin: 0 auto;
 }
 
-
+.footer-logo {
+    flex: 1;
+    text-align: center;
+}
 
 .footer-logo img {
-    max-width: 15%;
-    /* Tamaño del logo en el footer */
-    height: auto;
+    max-width: 150px;
+    max-height: 150px;
 }
 
 .footer-links {
-    flex-basis: 30%;
+    flex: 1;
+    text-align: center;
 }
 
 .footer-links h3 {
-    font-size: 2vw;
-    /* Tamaño del encabezado de enlaces */
-    color: #FFFFFF;
-    /* Texto blanco */
+    font-size: 1.5vw;
+    margin-bottom: 1vw;
 }
 
 .footer-links ul {
@@ -143,28 +162,28 @@ footer {
 }
 
 .footer-links li {
-    margin: 0.5em 0;
+    margin: 0.5vw 0;
 }
 
 .footer-links a {
     color: #00AEEF;
-    /* Azul celeste para los enlaces */
     text-decoration: none;
 }
 
 .footer-links a:hover {
     color: #FF6F00;
-    /* Naranja brillante al pasar el cursor */
 }
 
 .footer-info {
-    flex-basis: 30%;
-    text-align: right;
+    flex: 1;
+    text-align: center;
+    font-size: 0.9vw;
 }
 
 .footer-info p {
-    margin: 0.5em 0;
+    margin: 0.5vw 0;
 }
+
 
 
 /* Enlaces */
