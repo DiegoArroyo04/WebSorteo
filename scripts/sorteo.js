@@ -12,11 +12,12 @@ formulario.addEventListener("submit", function (event) {
     //MODAL CONFIRMAR PARTICIPACION
     modal.style.display = "block";
     //REGISTRAR EN BASE DE DATOS
+
     const nombre = document.getElementById("nombre").value;
     const apellidos = document.getElementById("apellidos").value;
     const email = document.getElementById("email").value;
     const telefono = document.getElementById("telefono").value;
-    const ciudad = document.getElementById("ciudad").value;
+
 
     // Enviar los datos al servidor para guardarlos en MongoDB
     fetch('/register', {
@@ -24,7 +25,7 @@ formulario.addEventListener("submit", function (event) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nombre, apellidos, email, telefono, ciudad }),
+        body: JSON.stringify({ nombre, apellidos, email, telefono })
     })
         .then(response => response.text())
         .then(data => {

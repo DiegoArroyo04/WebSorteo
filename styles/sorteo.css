@@ -121,7 +121,27 @@ form input::placeholder {
 
 }
 
-/* Estilo personalizado del botón de Google */
+.proteccionDatos {
+    display: flex;
+    font-size: 1.1vw;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.proteccionDatos input {
+    transform: scale(0.8);
+    /* Reducir tamaño */
+    accent-color: #003366;
+    /* Cambiar color del checkbox */
+    border-radius: 4px;
+    /* Borde suave */
+}
+
+
+.proteccionDatos label {
+    color: #003366;
+}
+
 
 
 
@@ -189,13 +209,12 @@ footer {
 /* Enlaces */
 a {
     color: #00AEEF;
-    /* Azul celeste para los enlaces */
     text-decoration: none;
 }
 
 a:hover {
     color: #FF6F00;
-    /* Naranja brillante al pasar el cursor por encima */
+
 }
 
 .modal {

@@ -35,7 +35,11 @@
             <input type="text" id="apellidos" placeholder="Apellidos" required>
             <input type="email" id="email" placeholder="Correo Electrónico" name="email" required>
             <input type="number" id="telefono" placeholder="Teléfono" required>
-            <input type="text" id="ciudad" placeholder="Ciudad" required>
+            <div class="proteccionDatos">
+                <input type="checkbox" required id="aceptaProteccionDatos">
+                <label for="aceptaProteccionDatos">Acepto la <a href="#" id="abrirModalPoliticaPrivacidad">Politica De
+                        Privacidad De Datos</a></label>
+            </div>
             <button id="participar" type="submit">Participar En El Sorteo</button>
             <!-- INICIAR SESION CON GOOGLE -->
             <div id="g_id_onload"

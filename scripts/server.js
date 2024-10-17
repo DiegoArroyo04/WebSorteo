@@ -38,14 +38,13 @@ app.post('/register', async (req, res) => {
         const database = client.db("Sorteos");
         const collection = database.collection("voltrex");
 
-        const { nombre, apellidos, email, telefono, ciudad } = req.body;
+        const { nombre, apellidos, email, telefono } = req.body;
 
         const result = await collection.insertOne({
             nombre,
             apellidos,
             email,
             telefono,
-            ciudad,
             fechaRegistro: new Date()
         });
 
