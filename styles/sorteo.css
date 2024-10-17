@@ -7,12 +7,13 @@
 }
 
 body {
-    background-color: #F0F0F0;
+    background-color: #F9F9F9;
     font-family: 'Montserrat';
+
 }
 
 header {
-    background-color: #003366;
+    background: linear-gradient(90deg, #003366, #005599);
     color: #FFFFFF;
     padding: 2%;
     display: flex;
@@ -26,6 +27,7 @@ header img {
     max-width: 150px;
     max-height: 150px;
 
+
 }
 
 
@@ -35,6 +37,7 @@ header img {
     font-weight: bold;
     color: #FFFFFF;
     margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .countdown {
@@ -68,7 +71,9 @@ header img {
     color: #003366;
     padding-bottom: 5%;
     padding-top: 0%;
+
 }
+
 
 
 .mainContent {
