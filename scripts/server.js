@@ -1,4 +1,4 @@
-//FUNCIONA CON EXITO
+
 const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const bodyParser = require('body-parser');

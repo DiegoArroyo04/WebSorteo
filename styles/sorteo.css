@@ -46,6 +46,7 @@ header img {
     margin: 1.5% 0;
 }
 
+
 .mainContent {
     display: flex;
     align-items: stretch;
@@ -76,31 +77,44 @@ form button {
     margin: 1% 0;
     padding: 1%;
     border: 1px solid #003366;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1.3vw;
 }
+
 
 form input {
     color: #003366;
 }
 
 form button {
-    background-color: #FF6F00;
+    background-color: #FF8C00;
     color: #FFFFFF;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
+    width: 40%;
+    margin-bottom: 3%;
+    height: 50%;
+    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
 }
 
-form input:focus {
+.g_id_signin {
+    width: 40%;
+    height: 50%;
+}
 
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="number"]:focus {
     outline: none;
     box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
-
 }
+
+
 
 
 form button:hover {
-    background-color: #CC5700;
+    background-color: #FF6F00;
 }
 
 form input::placeholder {
@@ -123,24 +137,56 @@ form input::placeholder {
 
 .proteccionDatos {
     display: flex;
+    align-items: center;
     font-size: 1.1vw;
     margin-top: 2%;
     margin-bottom: 2%;
 }
 
-.proteccionDatos input {
-    transform: scale(0.8);
-    /* Reducir tamaño */
-    accent-color: #003366;
-    /* Cambiar color del checkbox */
-    border-radius: 4px;
-    /* Borde suave */
+
+.proteccionDatos input[type="checkbox"] {
+    width: 1.4vw;
+    height: 1.4vw;
+    border: 0.1vw solid #003366;
+    border-radius: 0.3vw;
+    /* Quitar estilo predeterminado */
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+    margin-right: 0.7vw;
+
+
 }
+
+
+.proteccionDatos input[type="checkbox"]:checked {
+    background-color: #00AEEF;
+    border-color: #003366;
+}
+
+/* Tick blanco centrado */
+.proteccionDatos input[type="checkbox"]:checked::after {
+    /* Tick azul */
+    content: "✔";
+    color: #003366;
+    font-size: 1.1vw;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 
 
 .proteccionDatos label {
     color: #003366;
 }
+
+
+
+
 
 
 
@@ -217,13 +263,94 @@ a:hover {
 
 }
 
+
+
+
+/*MODAL ESTILO*/
 .modal {
     display: none;
-    width: 100%;
-    background-color: aqua;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 
 .modalContent {
-    background-color: black;
-    width: 50%;
+    background-color: #fefefe;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin: auto;
+}
+
+.modalContent h2 {
+    color: #003366;
+}
+
+.modalContent p {
+    margin-bottom: 1.5rem;
+}
+
+
+#acceptButton {
+    background-color: #003366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#acceptButton:hover {
+    background-color: #005599;
+}
+
+.success-gif {
+    width: 15vw;
+    max-width: 100px;
+    height: auto;
+    /* Mantiene la proporción */
+    position: absolute;
+    /* Permite el posicionamiento dentro del modal */
+    top: 36%;
+    /* Ajusta este valor según sea necesario */
+    left: 47%;
+    transform: translate(-50%, -50%);
+    /* Centra la imagen en relación a su propio ancho y alto */
+    /* Centra la imagen en relación a su propio ancho */
+    animation: bounce 1s forwards;
+    /* Animación de rebote */
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+        /* Posición original */
+    }
+
+    40% {
+        transform: translateY(-10px);
+        /* Sube un poco */
+    }
+
+    60% {
+        transform: translateY(-5px);
+        /* Rebote ligero */
+    }
 }

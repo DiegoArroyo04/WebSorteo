@@ -37,8 +37,8 @@
             <input type="number" id="telefono" placeholder="Teléfono" required>
             <div class="proteccionDatos">
                 <input type="checkbox" required id="aceptaProteccionDatos">
-                <label for="aceptaProteccionDatos">Acepto la <a href="#" id="abrirModalPoliticaPrivacidad">Politica De
-                        Privacidad De Datos</a></label>
+                <label for="aceptaProteccionDatos">Acepto la <a href="#" id="abrirModalPoliticaPrivacidad">Política De
+                        Privacidad Y Protección De Datos</a></label>
             </div>
             <button id="participar" type="submit">Participar En El Sorteo</button>
             <!-- INICIAR SESION CON GOOGLE -->
@@ -57,15 +57,98 @@
         </div>
     </div>
 
-
-
-    <div class="modal" id="modal">
-        <div id="modalContent" class="modalContent">
-            <img src="#" alt="Imagen del Modal"> <!-- Asegúrate de agregar una fuente válida aquíz -->
-            <p>HAS PARTICIPADO EN EL SORTEO</p>
-            <p>¡MUCHA SUERTE!</p>
+    <!-- Modal de Confirmación de Registro -->
+    <div id="confirmationModal" class="modal">
+        <div class="modalContent">
+            <h2>¡Registro Exitoso!</h2>
+            <img src="assets/registroexitoso.png" alt="Registro Exitoso" class="success-gif">
+            <br>
+            <p>Has sido registrado con éxito. ¡Buena suerte en el sorteo!</p>
         </div>
     </div>
+
+
+    <!-- Modal POLITICA PROTECCION DE DATOS -->
+    <div id="privacyModal" class="modal">
+        <div class="modalContent">
+            <h2>Política de Protección de Datos</h2>
+            <br>
+            <p>
+                <strong>1. Responsable del Tratamiento</strong>
+                <br><br>1.1. SORTEOXPRESS, con CIF A11400157 y domicilio en Calle Camino Ariadna, 89, 13.230 - Membrilla
+                (Ciudad Real).
+                Contáctanos por el correo electrónico: diegoarroyogonzalez04@gmail.com.
+                <br><br>1.2. El Delegado de Protección de Datos (DPD) es la persona encargada de salvaguardar su
+                privacidad en nuestra Entidad. Si precisa contactar con él, puede hacerlo en
+                diegoarroyogonzalez04@gmail.com o mediante carta remitida a la dirección de la Entidad, incluyendo la
+                referencia “Delegado de Protección de Datos”.
+            </p>
+            <p>
+                <strong>2. Alcance</strong>
+                <br><br>2.1. La presente información en materia de Protección de Datos aplica exclusivamente a los
+                tratamientos que se realizan de los datos recabados a través de los formularios habilitados en las
+                páginas web del responsable del tratamiento.
+            </p>
+            <p>
+                <strong>3. Procedencia y categoría de datos</strong>
+                <br><br>3.1. Los datos personales que se gestionan a través de la presente página web serán
+                exclusivamente
+                los que nos facilite a través de los formularios habilitados. No se obtienen datos personales
+                procedentes de otras fuentes.
+                <br>3.2. Las categorías de datos tratados son datos identificativos y de contacto: nombre, apellidos y
+                email, así como cualquier otro dato de carácter personal que usted incluya en el cuerpo del mensaje.
+            </p>
+            <p>
+                <strong>4. Finalidad</strong>
+                <br><br>4.1. El Responsable tratará los datos identificativos y de contacto para ponernos en contacto
+                usted
+                y atender las consultas y solicitudes de información que nos remita a través de formularios habilitados
+                en nuestra página web.
+                <br>4.2. Si lo autoriza expresamente, utilizaremos sus datos de contacto para remitirle comunicaciones
+                comerciales de productos y servicios comercializados por SORTEOXPRESS.
+                <br>4.3. No se prevé la realización de transferencias internacionales de datos ni la elaboración de
+                perfiles.
+            </p>
+            <p>
+                <strong>5. Legitimación</strong>
+                <br><br>5.1. La legitimación para el tratamiento de tus datos personales es el consentimiento expreso y
+                libre prestado por usted al marcar la casilla “He leído y acepto la Política de Protección de Datos”.
+            </p>
+            <p>
+                <strong>6. Conservación</strong>
+                <br><br>6.1. Los datos recabados se conservarán durante el plazo de un año. Trascurrido ese plazo, los
+                datos
+                se eliminarán.
+            </p>
+            <p>
+                <strong>7. Destinatarios</strong>
+                <br><br>7.1. Los datos se tratarán por el responsable del tratamiento, así como por los agentes y
+                proveedores necesarios, siempre con contratos y garantías.
+            </p>
+            <p>
+                <strong>8. Derechos</strong>
+                <br><br>8.1. Derecho de acceso: conocer qué tipo de datos estamos tratando.
+                <br>8.2. Derecho de rectificación: solicitar la modificación de tus datos personales.
+                <br>8.3. Derecho de oposición: solicitar que no se traten tus datos para determinadas finalidades.
+                <br>8.4. Derecho de cancelación: solicitar la supresión de tus datos personales.
+                <br>8.5. Derecho a limitar el tratamiento: solicitar la limitación del tratamiento.
+                <br>8.6. Derecho a la portabilidad: solicitar la portabilidad de los datos.
+                <br>8.7. Derecho a revocar el consentimiento: revocar el consentimiento prestado.
+                <br>8.8. Derecho a presentar reclamación ante la autoridad de control competente.
+            </p>
+            <p>
+                Para el ejercicio de cualquiera de los derechos, puedes dirigir tu solicitud a SORTEOXPRESS en la
+                dirección de correo electrónico diegoarroyogonzalez04@gmail.com, adjuntando copia de su DNI u otro
+                documento oficial identificativo.
+            </p>
+            <button id="acceptButton">He leído y acepto</button>
+        </div>
+    </div>
+
+
+
+
+
 
     <footer>
 
@@ -78,7 +161,7 @@
                 <li><a href="#">Sorteo</a></li>
                 <li><a href="#">Contacto</a></li>
                 <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
+                <li><a href="#" id="modalPoliticaPrivacidadFooter">Política de Privacidad</a></li>
             </ul>
         </div>
         <div class="footer-info">
