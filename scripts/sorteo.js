@@ -1,5 +1,4 @@
 
-
 const botonParticipar = document.getElementById("participar");
 const formulario = document.getElementById("formulario");
 
@@ -113,5 +112,39 @@ window.onclick = function (event) {
         modal.style.display = "none"; // Ocultar el modal
     }
 };
+
+
+function iniciarCuentaRegresiva() {
+    // Establece la fecha de finalización del sorteo (cambiar según tu necesidad)
+    const fechaFinalSorteo = new Date("Oct 30, 2024 23:59:59").getTime();
+
+    // Actualiza el contador cada segundo
+    const interval = setInterval(function () {
+        const ahora = new Date().getTime();
+
+        // Calcula la diferencia entre la fecha actual y la fecha de finalización
+        const tiempoRestante = fechaFinalSorteo - ahora;
+
+        // Calcula días, horas, minutos y segundos
+        const dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((tiempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+
+        // Muestra el resultado en el elemento con id="countdown"
+        document.getElementById("countdown").innerHTML = "Tiempo restante fin sorteo: " + dias + "d " + horas + "h "
+            + minutos + "m " + segundos + "s ";
+
+        // Si el conteo ha terminado, detén el contador y muestra un mensaje
+        if (tiempoRestante < 0) {
+            clearInterval(interval);
+            document.getElementById("countdown").innerHTML = "¡El sorteo ha terminado!";
+        }
+    }, 1000);
+}
+
+// Inicia el contador cuando se cargue la página
+window.onload = iniciarCuentaRegresiva;
+
 
 

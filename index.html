@@ -23,14 +23,14 @@
             <img src="/assets/voltrexlogo.png" alt="Imagen de Voltrex">
         </div>
     </header>
-    <h2 class="tituloSorteo">Sorteo 10 Smartphones VOLTREX</h2>
 
+    <div id="countdown" class="countdown"></div>
     <div class="mainContent">
         <div class="publicidad">
             <p>Publicidad</p>
         </div>
         <form method="get" id="formulario">
-
+            <h2 class="tituloSorteo">Sorteo 10 Smartphones VOLTREX</h2>
             <input type="text" id="nombre" placeholder="Nombre" name="nombre" required>
             <input type="text" id="apellidos" placeholder="Apellidos" required>
             <input type="email" id="email" placeholder="Correo Electrónico" name="email" required>
@@ -172,7 +172,7 @@
     </footer>
 
 
-    <script src="scripts/sorteo.js"></script>
+
     <script>
         //FUNCION PARA AUTOCOMPLETAR LOS CAMPOS DEL FORMULARIO CON GOOGLE
         function handleCredentialResponse(response) {
@@ -212,6 +212,7 @@
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
 
+    <script src="scripts/sorteo.js"></script>
 
 </body>
 
