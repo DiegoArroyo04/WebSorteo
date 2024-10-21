@@ -30,6 +30,11 @@ app.use('/styles', express.static(path.join(__dirname, '../styles')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));  // Asegurarnos de que se esté buscando en la raíz
 });
+//Ruta par mostrar `ganadores.html`
+app.get('/ganadores.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../ganadores.html'));
+});
+
 
 // Ruta para manejar el registro del formulario
 app.post('/register', async (req, res) => {

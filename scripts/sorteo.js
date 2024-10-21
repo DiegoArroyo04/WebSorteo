@@ -115,8 +115,8 @@ window.onclick = function (event) {
 
 
 function iniciarCuentaRegresiva() {
-    // Establece la fecha de finalización del sorteo (cambiar según tu necesidad)
-    const fechaFinalSorteo = new Date("Oct 30, 2024 23:59:59").getTime();
+    // Establece la fecha de finalización del sorteo 
+    const fechaFinalSorteo = new Date("Oct 21, 2024 11:54:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {
@@ -131,7 +131,7 @@ function iniciarCuentaRegresiva() {
         const minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
         const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
 
-        // Muestra el resultado en el elemento con id="countdown"
+        // Muestra el resultado 
         document.getElementById("countdown").innerHTML = "Tiempo restante fin sorteo: " + dias + "d " + horas + "h "
             + minutos + "m " + segundos + "s ";
 
@@ -139,6 +139,7 @@ function iniciarCuentaRegresiva() {
         if (tiempoRestante < 0) {
             clearInterval(interval);
             document.getElementById("countdown").innerHTML = "¡El sorteo ha terminado!";
+            window.location.href = "../ganadores.html";
         }
     }, 1000);
 }
