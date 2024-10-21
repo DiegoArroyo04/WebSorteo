@@ -24,28 +24,28 @@
         </div>
     </header>
 
-    <div id="countdown" class="countdown"></div>
+    <div id="countdown" class="countdown">
+    </div>
     <div class="mainContent">
         <div class="publicidad">
             <p>Publicidad</p>
         </div>
         <form method="get" id="formulario">
             <h2 class="tituloSorteo">Sorteo 10 Smartphones VOLTREX </h2>
-            <input type="text" id="nombre" placeholder="Nombre" name="nombre" required>
-            <p id="parrafoVerificacionNombre" class="parrafoVerificacion">Nombre inválido</p>
-            <input type="text" id="apellidos" placeholder="Apellidos" required>
+            <input type="text" id="nombre" placeholder="Nombre" name="nombre" oninput="comprobarNombre()" required>
+            <p id="parrafoVerificacionNombre" class="parrafoVerificacion"></p>
+            <input type="text" id="apellidos" placeholder="Apellidos" name="apellidos" oninput="comprobarApellidos()"
+                required>
             <p id="parrafoVerificacionApellidos" class="parrafoVerificacion"></p>
             <input type="email" id="email" placeholder="Correo Electrónico" name="email" required>
             <p id="parrafoVerificacionEmail" class="parrafoVerificacion"></p>
-            <input type="number" id="telefono" placeholder="Teléfono" required>
+            <input type="number" id="telefono" placeholder="Teléfono" name="telefono" oninput="comprobarTelefono()"
+                required>
             <p id="parrafoVerificacionTlf" class="parrafoVerificacion"></p>
             <div class="proteccionDatos">
                 <input type="checkbox" required id="aceptaProteccionDatos">
                 <label for="aceptaProteccionDatos">Acepto la <a href="#" id="abrirModalPoliticaPrivacidad">Política De
                         Privacidad Y Protección De Datos</a></label>
-            </div>
-            <div id="botones">
-
             </div>
             <button id="participar" type="submit">Participar En El Sorteo</button>
             <!-- INICIAR SESION CON GOOGLE -->

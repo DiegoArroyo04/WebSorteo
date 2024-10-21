@@ -110,7 +110,18 @@ form input {
 
 .parrafoVerificacion {
     text-align: left;
+    width: 90%;
+    margin: 0;
+    height: 1.5em;
+    font-size: 0.9vw;
+    color: red;
+    display: none;
+    margin-bottom: 1%;
+    margin-top: 1%;
+
 }
+
+
 
 form button {
     background-color: #FF8C00;

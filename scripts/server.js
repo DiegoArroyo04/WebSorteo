@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
 //Ruta par mostrar `ganadores.html`
 app.get('/ganadores.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../ganadores.html'));
+
 });
 
 
@@ -62,6 +63,9 @@ app.post('/register', async (req, res) => {
         await client.close();
     }
 });
+
+
+
 
 // Iniciar el servidor
 app.listen(port, () => {

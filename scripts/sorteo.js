@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Inicia el contador cuando se cargue la página
     window.onload = iniciarCuentaRegresiva;
 
+
 });
+
 
 
 
@@ -15,7 +17,7 @@ function validarFormulario(event) {
 
 
     //PERMITIR O DENEGAR REGISTRO
-    if (comprobarNombre() == false) {
+    if ((comprobarNombre() == true) && (comprobarApellidos() == true) && (comprobarTelefono() == true)) {
 
         //REGISTRAR EN BASE DE DATOS
         registrarBaseDatos();
@@ -36,6 +38,8 @@ function validarFormulario(event) {
 
         //MOSTRAR MENSAJE CONFIRMACION 
         mostrarModalConfirmacion();
+        // Permitir el envío del formulario
+
         return true;
 
     } else {
@@ -44,21 +48,84 @@ function validarFormulario(event) {
     }
 
 }
+function comprobarTelefono() {
+    var telefono = document.getElementById("telefono").value;
+    var patronNumeros = "6789";
+    var patronCorrecto = false;
+    var longitud = false;
+    if (telefono === "") {
+        document.getElementById("parrafoVerificacionTlf").style.display = "none";
+        return false; // Aquí no hay nada que validar si está vacío
+    }
+    if (patronNumeros.includes(telefono[0])) {
+        patronCorrecto = true;
+        document.getElementById("parrafoVerificacionTlf").style.display = "none";
+    }
+    if (telefono.length == 9) {
+        longitud = true;
+        document.getElementById("parrafoVerificacionTlf").style.display = "none";
+    }
 
+    if ((patronCorrecto == true) && (longitud == true)) {
+        document.getElementById("parrafoVerificacionTlf").style.display = "none";
+        return true;
+    } else if (patronCorrecto == false) {
+        document.getElementById("parrafoVerificacionTlf").innerHTML = "Formato de telefono incorrecto.Los numeros en España comienzan por 6 7 8 o 9.";
+        document.getElementById("parrafoVerificacionTlf").style.display = "block";
+        document.getElementById("parrafoVerificacionTlf").style.color = "red";
+        return false;
+    } else {
+        document.getElementById("parrafoVerificacionTlf").innerHTML = "Longitud de telefono incorrecta.";
+        document.getElementById("parrafoVerificacionTlf").style.display = "block";
+        document.getElementById("parrafoVerificacionTlf").style.color = "red";
+        return false;
+    }
+
+}
 function comprobarNombre() {
     var nombre = document.getElementById("nombre").value;
     var validado = true;
-    const numeros = "1234567890"
+    const numeros = "1234567890";
 
     //COMPROBACION DE QUE EL CAMPO DE NOMBRE NO TENGA NUMEROS
     for (i = 0; i < nombre.length; i++) {
         if (numeros.includes(nombre[i])) {
             validado = false;
+            document.getElementById("parrafoVerificacionNombre").innerHTML = "Nombre inválido.Un nombre no contiene números";
+            document.getElementById("parrafoVerificacionNombre").style.display = "block";
+            document.getElementById("parrafoVerificacionNombre").style.color = "red";
+
         }
     }
+
+    if (validado == true) {
+        document.getElementById("parrafoVerificacionNombre").style.display = "none";
+    }
+
     return validado;
 }
+function comprobarApellidos() {
+    var apellidos = document.getElementById("apellidos").value;
+    var validado = true;
+    const numeros = "1234567890";
 
+    //COMPROBACION DE QUE EL CAMPO DE NOMBRE NO TENGA NUMEROS
+    for (i = 0; i < apellidos.length; i++) {
+        if (numeros.includes(apellidos[i])) {
+            validado = false;
+            document.getElementById("parrafoVerificacionApellidos").innerHTML = "Apellidos inválidos.Los apellidos no contienen números";
+            document.getElementById("parrafoVerificacionApellidos").style.display = "block";
+            document.getElementById("parrafoVerificacionApellidos").style.color = "red";
+
+        }
+    }
+
+    if (validado == true) {
+        document.getElementById("parrafoVerificacionApellidos").style.display = "none";
+    }
+
+    return validado;
+}
 
 function registrarBaseDatos() {
     const nombre = document.getElementById("nombre").value;
@@ -130,6 +197,7 @@ function mostrarModalConfirmacion() {
     // Cerrar el modal automáticamente después de 5 segundos
     setTimeout(() => {
         modal.style.display = "none";
+        document.getElementById("formulario").submit();
     }, 5000);
 }
 
@@ -145,7 +213,7 @@ window.onclick = function (event) {
 
 function iniciarCuentaRegresiva() {
     // Establece la fecha de finalización del sorteo 
-    const fechaFinalSorteo = new Date("Oct 21, 2024 20:54:00").getTime();
+    const fechaFinalSorteo = new Date("Oct 21, 2024 18:25:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {
