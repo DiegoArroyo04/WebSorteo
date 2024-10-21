@@ -1,34 +1,63 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Event listener para el formulario
+    const formulario = document.getElementById("formulario");
+    formulario.addEventListener("submit", validarFormulario);
 
-const botonParticipar = document.getElementById("participar");
-const formulario = document.getElementById("formulario");
+    // Inicia el contador cuando se cargue la página
+    window.onload = iniciarCuentaRegresiva;
 
-
-
-formulario.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-
-
-    //REGISTRAR EN BASE DE DATOS
-    registrarBaseDatos();
-
-    /* MANDAR EMAIL
-    event.preventDefault();
-    const serviceID = 'service_dy20kyj';
-    const templateID = 'template_w55i12k';
-
-    emailjs.sendForm(serviceID, templateID, this)
-        .then(() => {
-
-        }, (err) => {
-
-           
-        });
-    */
-
-    //MOSTRAR MENSAJE CONFIRMACION 
-    mostrarModalConfirmacion();
 });
+
+
+
+function validarFormulario(event) {
+    event.preventDefault(); // Evita el envío del formulario
+
+
+    //PERMITIR O DENEGAR REGISTRO
+    if (comprobarNombre() == false) {
+
+        //REGISTRAR EN BASE DE DATOS
+        registrarBaseDatos();
+
+        /* MANDAR EMAIL
+        event.preventDefault();
+        const serviceID = 'service_dy20kyj';
+        const templateID = 'template_w55i12k';
+    
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+    
+            }, (err) => {
+    
+               
+            });
+        */
+
+        //MOSTRAR MENSAJE CONFIRMACION 
+        mostrarModalConfirmacion();
+        return true;
+
+    } else {
+
+        return false;
+    }
+
+}
+
+function comprobarNombre() {
+    var nombre = document.getElementById("nombre").value;
+    var validado = true;
+    const numeros = "1234567890"
+
+    //COMPROBACION DE QUE EL CAMPO DE NOMBRE NO TENGA NUMEROS
+    for (i = 0; i < nombre.length; i++) {
+        if (numeros.includes(nombre[i])) {
+            validado = false;
+        }
+    }
+    return validado;
+}
 
 
 function registrarBaseDatos() {
@@ -116,7 +145,7 @@ window.onclick = function (event) {
 
 function iniciarCuentaRegresiva() {
     // Establece la fecha de finalización del sorteo 
-    const fechaFinalSorteo = new Date("Oct 21, 2024 11:54:00").getTime();
+    const fechaFinalSorteo = new Date("Oct 21, 2024 20:54:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {
@@ -132,6 +161,7 @@ function iniciarCuentaRegresiva() {
         const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
 
         // Muestra el resultado 
+        document.getElementById("countdown").style.display = "block";
         document.getElementById("countdown").innerHTML = "Tiempo restante fin sorteo: " + dias + "d " + horas + "h "
             + minutos + "m " + segundos + "s ";
 
@@ -144,8 +174,7 @@ function iniciarCuentaRegresiva() {
     }, 1000);
 }
 
-// Inicia el contador cuando se cargue la página
-window.onload = iniciarCuentaRegresiva;
+
 
 
 

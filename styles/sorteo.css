@@ -41,7 +41,7 @@ header img {
 }
 
 .countdown {
-
+    display: none;
     text-align: center;
     font-size: 1.8vw;
     font-weight: bold;
@@ -100,6 +100,7 @@ form button {
     border: 1px solid #003366;
     border-radius: 8px;
     font-size: 1.1vw;
+    font-family: 'Montserrat';
 }
 
 
@@ -107,13 +108,18 @@ form input {
     color: #003366;
 }
 
+.parrafoVerificacion {
+    text-align: left;
+}
+
 form button {
     background-color: #FF8C00;
     color: #FFFFFF;
-    border-radius: 30px;
+    border-radius: 50px;
     border: none;
     cursor: pointer;
     width: 40%;
+    height: 100%;
     margin-bottom: 3%;
     height: auto;
     box-shadow: 0 0.5vw 1vw rgba(0, 0, 100, 0.3);
@@ -121,8 +127,8 @@ form button {
 }
 
 .g_id_signin {
+    height: 100%;
     width: 40%;
-    height: 50%;
     margin-top: 2%;
 }
 
