@@ -164,7 +164,8 @@ form input::placeholder {
 
 
 .publicidad {
-    display: block;
+    display: block !important;
+    /* Forzar el display por problemas en distintos navegadores */
     flex-basis: 20%;
     background-color: #FFFFFF;
     background-size: cover;
