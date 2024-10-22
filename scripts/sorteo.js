@@ -3,13 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const formulario = document.getElementById("formulario");
     formulario.addEventListener("submit", validarFormulario);
 
-    // Inicia el contador cuando se cargue la página
-    window.onload = iniciarCuentaRegresiva;
+    // Inicia el contador cuando se cargue la página y carga la publicidad estatica
+    window.onload = function () {
+        iniciarCuentaRegresiva();
+        publicidad();
+    };
 
 
 });
-
-
 
 
 function validarFormulario(event) {
@@ -22,24 +23,16 @@ function validarFormulario(event) {
         //REGISTRAR EN BASE DE DATOS
         registrarBaseDatos();
 
-        /* MANDAR EMAIL
-        event.preventDefault();
-        const serviceID = 'service_dy20kyj';
-        const templateID = 'template_w55i12k';
-    
-        emailjs.sendForm(serviceID, templateID, this)
-            .then(() => {
-    
-            }, (err) => {
-    
-               
-            });
+
+        /*MANDAR EMAIL CONFIRMACION REGISTRO
+        mandarEmail(event.target);
         */
 
         //MOSTRAR MENSAJE CONFIRMACION 
         mostrarModalConfirmacion();
-        // Permitir el envío del formulario
 
+
+        // Permitir el envío del formulario
         return true;
 
     } else {
@@ -155,6 +148,22 @@ function registrarBaseDatos() {
 
 }
 
+
+function mandarEmail(form) {
+
+    const serviceID = 'service_dy20kyj';
+    const templateID = 'template_w55i12k';
+
+    return emailjs.sendForm(serviceID, templateID, form)
+        .then(() => {
+
+        }, (err) => {
+
+
+        });
+}
+
+
 //MODAL PRIVACIDAD
 
 
@@ -213,7 +222,7 @@ window.onclick = function (event) {
 
 function iniciarCuentaRegresiva() {
     // Establece la fecha de finalización del sorteo 
-    const fechaFinalSorteo = new Date("Oct 22, 2024 18:25:00").getTime();
+    const fechaFinalSorteo = new Date("Oct 23, 2024 18:25:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {
@@ -240,6 +249,70 @@ function iniciarCuentaRegresiva() {
             window.location.href = "../ganadores.html";
         }
     }, 1000);
+}
+
+function publicidad() {
+    const bannersEstaticos = [
+        {
+            imagen: 'url("../assets/publi_estatica1.jpeg")',
+            url: 'https://www.finanzas.com/'
+        },
+        {
+            imagen: 'url("../assets/publi_estatica2.jpeg")',
+            url: 'https://www.emagister.com/'
+        },
+        {
+            imagen: 'url("../assets/publi_estatica3.jpeg")',
+            url: 'https://www.vivagym.es/'
+        },
+        {
+            imagen: 'url("../assets/publi_estatica4.jpeg")',
+            url: 'https://www.viajes.com/'
+        },
+        {
+            imagen: 'url("../assets/publi_estatica5.jpeg")',
+            url: 'https://www.primevideo.com/'
+        },
+        {
+            imagen: 'url("../assets/publi_estatica6.jpeg")',
+            url: 'https://algo-bonito.com/'
+        },
+        {
+            imagen: 'url("../assets/publi_estatica7.jpeg")',
+            url: 'https://medlineplus.gov/spanish/mentalhealth.html'
+        },
+        {
+            imagen: 'url("../assets/publi_estatica8.jpeg")',
+            url: 'https://play.google.com/store/apps/details?id=com.LionGames.BattleHero.v2&hl=es_AR'
+        }
+    ];
+
+
+    // Función para seleccionar una imagen aleatoria
+    function bannerAleatorio() {
+        const indiceAleatorio = Math.floor(Math.random() * bannersEstaticos.length);
+        return bannersEstaticos[indiceAleatorio];
+    }
+    var publicidad1 = document.getElementById("publicidad1");
+    var publicidad2 = document.getElementById("publicidad2");
+
+    var banner1 = bannerAleatorio();
+    var banner2 = bannerAleatorio();
+    //Al cargar la pagina tenemos un anuncio distinto
+    publicidad1.style.backgroundImage = banner1.imagen;
+    publicidad2.style.backgroundImage = banner2.imagen;
+
+    // Asignar las urls a los contenedores segun el banner 
+    publicidad1.onclick = function () {
+        window.open(banner1.url, '_blank');
+    };
+    publicidad2.onclick = function () {
+        window.open(banner2.url, '_blank');
+    };
+
+
+
+
 }
 
 
