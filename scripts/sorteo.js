@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.onload = function () {
         iniciarCuentaRegresiva();
         publicidad();
+
     };
 
 
@@ -222,7 +223,7 @@ window.onclick = function (event) {
 
 function iniciarCuentaRegresiva() {
     // Establece la fecha de finalización del sorteo 
-    const fechaFinalSorteo = new Date("Oct 23, 2024 18:25:00").getTime();
+    const fechaFinalSorteo = new Date("Oct 24, 2024 18:25:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {
@@ -314,6 +315,9 @@ function publicidad() {
 
 
 }
+
+
+
 
 
 

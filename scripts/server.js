@@ -64,6 +64,26 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// Ruta para obtener todos los ganadores
+app.get('/participantes', async (req, res) => {
+    try {
+        await client.connect();
+        const database = client.db("Sorteos");
+        const collection = database.collection("voltrex");
+
+        // Obtener todos los registros de la colección
+        const participantes = await collection.find({}).toArray();
+
+        // Enviar la lista de ganadores como respuesta
+        res.json(participantes);
+    } catch (err) {
+        console.error("Error al obtener los participantes:", err);
+        res.status(500).send("Error al obtener los participantes");
+    } finally {
+        await client.close();
+    }
+});
+
 
 
 
