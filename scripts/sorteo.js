@@ -254,7 +254,7 @@ function iniciarCuentaRegresiva() {
 function publicidad() {
     const bannersEstaticos = [
         {
-            imagen: 'url("../assets/publi_estatica1.jpeg")',
+            imagen: 'url("../assets/publi_estatica.jpeg")',
             url: 'https://www.finanzas.com/'
         },
         {
