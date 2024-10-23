@@ -1,13 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
+    //BOTON DE GOOGLE KEYS
+    const CLIENT_ID = '606576321819-uuqgovhm3rq6u99fgltkopde58huta69.apps.googleusercontent.com';
+    const API_KEY = 'AIzaSyDzYORZrX0CQkYvXNXpzObFbE-882api_Q';
+    const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+    var tokenClient;
+
     // Event listener para el formulario
     const formulario = document.getElementById("formulario");
     formulario.addEventListener("submit", validarFormulario);
+
 
     // Inicia el contador cuando se cargue la página y carga la publicidad estatica
     window.onload = function () {
         iniciarCuentaRegresiva();
         publicidad();
-
+        initializeGSI();
     };
 
 
@@ -315,6 +322,8 @@ function publicidad() {
 
 
 }
+
+
 
 
 
