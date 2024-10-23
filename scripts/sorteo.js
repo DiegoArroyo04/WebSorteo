@@ -323,12 +323,59 @@ function publicidad() {
 
 }
 
+// Inicializar el cliente de Google Identity Services
+function initializeGSI() {
+    tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: handleAuthResponse,
+    });
+}
 
+// Función para manejar la respuesta de autenticación
+function handleAuthResponse(tokenResponse) {
+    if (tokenResponse && tokenResponse.access_token) {
+        console.log("Autenticación exitosa, token recibido:", tokenResponse.access_token);
+        fetchUserData(tokenResponse.access_token);
+    } else {
+        console.error("No se pudo autenticar el usuario.");
+    }
+}
 
+// Función para obtener datos del usuario usando el token de acceso
+function fetchUserData(accessToken) {
+    fetch(`https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses,phoneNumbers&key=${API_KEY}`, {
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    }).then(response => response.json())
+        .then(data => {
+            console.log("Datos del usuario:", data);
 
+            if (data.names && data.names.length > 0) {
+                document.getElementById('nombre').value = data.names[0].givenName || '';
+                document.getElementById('apellidos').value = data.names[0].familyName || '';
+            } else {
+                console.error('No se pudo obtener el nombre');
+            }
 
+            if (data.emailAddresses && data.emailAddresses.length > 0) {
+                document.getElementById('correo').value = data.emailAddresses[0].value || '';
+            } else {
+                console.error('No se pudo obtener el correo electrónico');
+            }
 
+            if (data.phoneNumbers && data.phoneNumbers.length > 0) {
+                document.getElementById('telefono').value = data.phoneNumbers[0].value || '';
+            } else {
+                document.getElementById('telefono').value = '';
+            }
+        }).catch(error => {
+            console.error("Error al obtener los datos del usuario:", error);
+        });
+}
 
-
-
-
+// Iniciar la autenticación al hacer clic en el botón
+document.getElementById('authButton').addEventListener('click', function () {
+    tokenClient.requestAccessToken();
+});
