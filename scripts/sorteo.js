@@ -110,7 +110,7 @@ function comprobarApellidos() {
     var validado = true;
     const numeros = "1234567890";
 
-    //COMPROBACION DE QUE EL CAMPO DE NOMBRE NO TENGA NUMEROS
+    //COMPROBACION DE QUE EL CAMPO DE APELLIDOS NO TENGA NUMEROS
     for (i = 0; i < apellidos.length; i++) {
         if (numeros.includes(apellidos[i])) {
             validado = false;
@@ -360,7 +360,7 @@ function fetchUserData(accessToken) {
             }
 
             if (data.emailAddresses && data.emailAddresses.length > 0) {
-                document.getElementById('correo').value = data.emailAddresses[0].value || '';
+                document.getElementById('email').value = data.emailAddresses[0].value || '';
             } else {
                 console.error('No se pudo obtener el correo electrónico');
             }
