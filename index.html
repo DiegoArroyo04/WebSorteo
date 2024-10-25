@@ -31,17 +31,24 @@
 
         </div>
         <form method="get" id="formulario">
+
             <h2 class="tituloSorteo"> ¡Sorteo 10 Smartphones VOLTREX! </h2>
+
             <input type="text" id="nombre" placeholder="Nombre" name="nombre" oninput="comprobarNombre()" required>
             <p id="parrafoVerificacionNombre" class="parrafoVerificacion"></p>
+
             <input type="text" id="apellidos" placeholder="Apellidos" name="apellidos" oninput="comprobarApellidos()"
                 required>
             <p id="parrafoVerificacionApellidos" class="parrafoVerificacion"></p>
-            <input type="email" id="email" placeholder="Correo Electrónico" name="email" required>
+
+            <input type="email" id="email" placeholder="Correo Electrónico" name="email"
+                oninput="validarUsuarioYaParticipa()" required>
             <p id="parrafoVerificacionEmail" class="parrafoVerificacion"></p>
-            <input type="number" id="telefono" placeholder="Teléfono" name="telefono" oninput="comprobarTelefono()"
-                required>
+
+            <input type="number" id="telefono" placeholder="Teléfono" name="telefono"
+                oninput="comprobarTelefono(); validarUsuarioYaParticipa();" required>
             <p id="parrafoVerificacionTlf" class="parrafoVerificacion"></p>
+
             <div class="proteccionDatos">
                 <input type="checkbox" required id="aceptaProteccionDatos">
                 <label for="aceptaProteccionDatos">Acepto la <a href="#" id="abrirModalPoliticaPrivacidad">Política De
@@ -69,6 +76,17 @@
             <p>Has sido registrado con éxito. ¡Buena suerte en el sorteo!</p>
         </div>
     </div>
+
+    <!-- Modal de Errores de Registro -->
+    <div id="errorModal" class="modal">
+        <div class="modalContent">
+            <h2>No ha sido posible registrarse</h2>
+            <br>
+            <p>Error al enviar el Formulario De Participación.</p>
+            <p>Por favor,reviselo.</p>
+        </div>
+    </div>
+
 
 
     <!-- Modal POLITICA PROTECCION DE DATOS -->
@@ -184,6 +202,7 @@
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+
     <script src="scripts/ganadores.js"></script>
     <script src="scripts/sorteo.js"></script>
 

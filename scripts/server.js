@@ -64,7 +64,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Ruta para obtener todos los ganadores
+// Ruta para obtener todos los participantes
 app.get('/participantes', async (req, res) => {
     try {
         await client.connect();
@@ -74,11 +74,45 @@ app.get('/participantes', async (req, res) => {
         // Obtener todos los registros de la colección
         const participantes = await collection.find({}).toArray();
 
-        // Enviar la lista de ganadores como respuesta
+        // Enviar la lista de participantes como respuesta
         res.json(participantes);
     } catch (err) {
         console.error("Error al obtener los participantes:", err);
         res.status(500).send("Error al obtener los participantes");
+    } finally {
+        await client.close();
+    }
+});
+
+// Ruta para guardar los ganadores en la colección `voltrex.ganadores`
+app.post('/guardar-ganadores', async (req, res) => {
+    try {
+        await client.connect();
+        const database = client.db("Sorteos");
+        const ganadoresCollection = database.collection("voltrex.ganadores");
+
+        const { ganadores } = req.body;
+
+        if (!ganadores || !Array.isArray(ganadores)) {
+            return res.status(400).send("Formato incorrecto de ganadores.");
+        }
+
+        // Comprobar si ya hay ganadores en la colección
+        const ganadoresExistentes = await ganadoresCollection.find({}).toArray();
+
+        if (ganadoresExistentes.length == 0) {
+            // Insertar ganadores en la colección `ganadores`
+            const result = await ganadoresCollection.insertMany(ganadores);
+
+            console.log("Ganadores guardados:", result.insertedIds);
+            res.send("Ganadores guardados exitosamente.");
+        }
+
+
+
+    } catch (err) {
+        console.error("Error al guardar ganadores:", err);
+        res.status(500).send("Error al guardar ganadores.");
     } finally {
         await client.close();
     }

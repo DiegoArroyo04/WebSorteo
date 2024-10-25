@@ -36,16 +36,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     };
 
-    validarUsuarioYaParticipa();
+
 });
 
 
-function validarFormulario(event) {
+async function validarFormulario(event) {
     event.preventDefault(); // Evita el envío del formulario
 
 
     //PERMITIR O DENEGAR REGISTRO
-    if ((comprobarNombre() == true) && (comprobarApellidos() == true) && (comprobarTelefono() == true)) {
+    if ((comprobarNombre() == true) && (comprobarApellidos() == true) && (comprobarTelefono() == true) && (await validarUsuarioYaParticipa() == true)) {
 
         //REGISTRAR EN BASE DE DATOS
         registrarBaseDatos();
@@ -63,7 +63,7 @@ function validarFormulario(event) {
         return true;
 
     } else {
-
+        mostrarModalError();
         return false;
     }
 
@@ -147,18 +147,45 @@ function comprobarApellidos() {
     return validado;
 }
 async function validarUsuarioYaParticipa() {
+    var validado = true;
 
     /*REUTILIZO LA VARIABLE PARTICIPANTES Y LA FUNCION OBTENER PARTICIPANTES DEFINIDA EN GANADORES PARA NO DUPLICAR CODIGO*/
     participantes = await obtenerParticipantes();
 
+    //COMPROBAR QUE ESE EMAIL NO ESTE REGISTRADO YA
     for (i = 0; i < participantes.length; i++) {
-        if (participantes.email == document.getElementById("email").value) {
+        if (participantes[i].email == document.getElementById("email").value) {
+            validado = false;
+            document.getElementById("parrafoVerificacionEmail").innerHTML = "¡Ya estas participando en el sorteo! Solamente se admite una participación.";
+            document.getElementById("parrafoVerificacionEmail").style.display = "block";
+            document.getElementById("parrafoVerificacionEmail").style.color = "red";
+        }
 
+    }
+
+    //COMPROBAR QUE ESE NUMERO DE TELEFONO NO ESTE REGISTRADO YA
+    for (i = 0; i < participantes.length; i++) {
+        if (participantes[i].telefono == document.getElementById("telefono").value) {
+            validado = false;
+            document.getElementById("parrafoVerificacionTlf").innerHTML = "¡Ya estas participando en el sorteo! Solamente se admite una participación.";
+            document.getElementById("parrafoVerificacionTlf").style.display = "block";
+            document.getElementById("parrafoVerificacionTlf").style.color = "red";
         }
 
     }
 
 
+
+    if (validado == true) {
+        document.getElementById("parrafoVerificacionEmail").style.display = "none";
+
+        // Solo oculta si el formato es correcto y ademas no esta registrado
+        if (comprobarTelefono() == true) {
+            parrafoVerificacionTlf.style.display = "none";
+        }
+    }
+
+    return validado;
 
 }
 
@@ -254,11 +281,28 @@ function mostrarModalConfirmacion() {
 }
 
 
+//MODAL ERROR
+function mostrarModalError() {
+    const modal = document.getElementById("errorModal");
+    modal.style.display = "flex";
+    // Cerrar el modal automáticamente después de 5 segundos
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 5000);
+}
+
+
+
 // Cerrar el modal si se hace clic fuera de él
 window.onclick = function (event) {
-    const modal = document.getElementById("confirmationModal");
-    if (event.target === modal) {
-        modal.style.display = "none"; // Ocultar el modal
+    const modalConfirmacion = document.getElementById("confirmationModal");
+    const modalError = document.getElementById("errorModal");
+    if (event.target === modalConfirmacion) {
+        modalConfirmacion.style.display = "none"; // Ocultar el modal de confirmacion
+    }
+
+    if (event.target === modalError) {
+        modalError.style.display = "none"; // Ocultar el modal de confirmacion
     }
 };
 
@@ -379,15 +423,11 @@ function fetchUserData(accessToken) {
             if (data.names && data.names.length > 0) {
                 document.getElementById('nombre').value = data.names[0].givenName || '';
                 document.getElementById('apellidos').value = data.names[0].familyName || '';
-            } else {
-                console.error('No se pudo obtener el nombre');
             }
-
             if (data.emailAddresses && data.emailAddresses.length > 0) {
                 document.getElementById('email').value = data.emailAddresses[0].value || '';
-            } else {
-                console.error('No se pudo obtener el correo electrónico');
             }
+
             //ESCONDER EL BOTON UNA VEZ AUTOCOMPLETADO LOS CAMPOS 
             document.getElementById("botonGoogle").style.display = "none";
         }).catch(error => {
