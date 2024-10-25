@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //BOTON DE GOOGLE KEYS
     const CLIENT_ID = '606576321819-uuqgovhm3rq6u99fgltkopde58huta69.apps.googleusercontent.com';
     const API_KEY = 'AIzaSyDzYORZrX0CQkYvXNXpzObFbE-882api_Q';
-    const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/contacts.readonly';
+    const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
     var tokenClient;
 
     // Event listener para el formulario
@@ -344,22 +344,19 @@ function publicidad() {
 // Función para manejar la respuesta de autenticación
 function handleAuthResponse(tokenResponse) {
     if (tokenResponse && tokenResponse.access_token) {
-        console.log("Autenticación exitosa, token recibido:", tokenResponse.access_token);
         fetchUserData(tokenResponse.access_token);
-    } else {
-        console.error("No se pudo autenticar el usuario.");
     }
 }
 
-// Función para obtener datos del usuario usando el token de acceso
+// Función para obtener datos del usuario usando el token de acceso y realizar el autocompletado
 function fetchUserData(accessToken) {
-    fetch('https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses,phoneNumbers', {
+    fetch('https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses', {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         }
     }).then(response => response.json())
         .then(data => {
-            console.log("Datos del usuario:", data);
+
 
             if (data.names && data.names.length > 0) {
                 document.getElementById('nombre').value = data.names[0].givenName || '';
@@ -373,12 +370,8 @@ function fetchUserData(accessToken) {
             } else {
                 console.error('No se pudo obtener el correo electrónico');
             }
-
-            if (data.phoneNumbers && data.phoneNumbers.length > 0) {
-                document.getElementById('telefono').value = data.phoneNumbers[0].value || '';
-            } else {
-                document.getElementById('telefono').value = '';
-            }
+            //ESCONDER EL BOTON UNA VEZ AUTOCOMPLETADO LOS CAMPOS 
+            document.getElementById("botonGoogle").style.display = "none";
         }).catch(error => {
             console.error("Error al obtener los datos del usuario:", error);
         });
