@@ -1,14 +1,25 @@
 // Array para almacenar los participantes
 var participantes = [];
+var ganadores = [];
+
 window.onload = async function () {
 
 
     // Llama a obtenerParticipantes y espera su resultado
     participantes = await obtenerParticipantes();
 
-    realizarSorteo(participantes);
+
+    // Buscamos en la coleccion de ganadores y esperamos su resultado
+    ganadores = await obtenerGanadores();
 
 
+    // Realiza el sorteo si no hay ganadores
+    if (ganadores.length === 0) {
+        realizarSorteo(participantes);
+    }
+
+
+    console.log(ganadores);
 
 };
 
@@ -78,5 +89,16 @@ async function guardarGanadores(ganadores) {
 
     } catch (error) {
         console.error("Error al enviar ganadores al servidor:", error);
+    }
+}
+
+// Función para obtener los ganadores desde el servidor
+async function obtenerGanadores() {
+    try {
+        const response = await fetch('/ganadores');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al obtener ganadores:', error);
     }
 }

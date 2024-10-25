@@ -118,7 +118,25 @@ app.post('/guardar-ganadores', async (req, res) => {
     }
 });
 
+// Ruta para obtener los ganadores
+app.get('/ganadores', async (req, res) => {
+    try {
+        await client.connect();
+        const database = client.db("Sorteos");
+        const ganadoresCollection = database.collection("voltrex.ganadores");
 
+        // Obtener todos los ganadores de la colección
+        const ganadores = await ganadoresCollection.find({}).toArray();
+
+        // Enviar la lista de ganadores como respuesta
+        res.json(ganadores);
+    } catch (err) {
+        console.error("Error al obtener los ganadores:", err);
+        res.status(500).send("Error al obtener los ganadores.");
+    } finally {
+        await client.close();
+    }
+});
 
 
 // Iniciar el servidor
