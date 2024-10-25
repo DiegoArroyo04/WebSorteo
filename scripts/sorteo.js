@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //BOTON DE GOOGLE KEYS
     const CLIENT_ID = '606576321819-uuqgovhm3rq6u99fgltkopde58huta69.apps.googleusercontent.com';
     const API_KEY = 'AIzaSyDzYORZrX0CQkYvXNXpzObFbE-882api_Q';
-    const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+    const SCOPES = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/contacts.readonly';
     var tokenClient;
 
     // Event listener para el formulario
@@ -10,11 +10,28 @@ document.addEventListener("DOMContentLoaded", function () {
     formulario.addEventListener("submit", validarFormulario);
 
 
-    // Inicia el contador cuando se cargue la página y carga la publicidad estatica
+
+    // Iniciar la autenticación al hacer clic en el botón
+    document.getElementById('botonGoogle').addEventListener('click', function () {
+        tokenClient.requestAccessToken();
+    });
+
+    // Inicializar el cliente de Google Identity Services
+    function initializeGSI() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            callback: handleAuthResponse,
+        });
+    }
+
     window.onload = function () {
+        // Inicia el contador cuando se cargue la página
         iniciarCuentaRegresiva();
+        //CARGAR PUBLICIDAD
         publicidad();
-        initializeGSI();
+        //Inicializar GSI
+        initializeGSI(CLIENT_ID, SCOPES, tokenClient);
     };
 
 
@@ -230,7 +247,7 @@ window.onclick = function (event) {
 
 function iniciarCuentaRegresiva() {
     // Establece la fecha de finalización del sorteo 
-    const fechaFinalSorteo = new Date("Oct 24, 2024 18:25:00").getTime();
+    const fechaFinalSorteo = new Date("Oct 26, 2024 18:25:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {
@@ -323,14 +340,6 @@ function publicidad() {
 
 }
 
-// Inicializar el cliente de Google Identity Services
-function initializeGSI() {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: SCOPES,
-        callback: handleAuthResponse,
-    });
-}
 
 // Función para manejar la respuesta de autenticación
 function handleAuthResponse(tokenResponse) {
@@ -344,7 +353,7 @@ function handleAuthResponse(tokenResponse) {
 
 // Función para obtener datos del usuario usando el token de acceso
 function fetchUserData(accessToken) {
-    fetch(`https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses,phoneNumbers&key=${API_KEY}`, {
+    fetch('https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses,phoneNumbers', {
         headers: {
             'Authorization': `Bearer ${accessToken}`
         }
@@ -375,7 +384,3 @@ function fetchUserData(accessToken) {
         });
 }
 
-// Iniciar la autenticación al hacer clic en el botón
-document.getElementById('authButton').addEventListener('click', function () {
-    tokenClient.requestAccessToken();
-});
