@@ -92,8 +92,7 @@ form {
     margin: 0% 3%;
 }
 
-form input,
-form button {
+form input {
     width: 90%;
     margin: 1% 0;
     padding: 0.8%;
@@ -101,6 +100,7 @@ form button {
     border-radius: 8px;
     font-size: 1.1vw;
     font-family: 'Montserrat';
+
 }
 
 
@@ -127,21 +127,24 @@ form button {
     background-color: #FF8C00;
     color: #FFFFFF;
     border-radius: 50px;
+    font-size: 1.1vw;
     border: none;
     cursor: pointer;
-    width: 40%;
+    width: 60%;
     height: 100%;
     margin-bottom: 3%;
     height: auto;
     box-shadow: 0 0.5vw 1vw rgba(0, 0, 100, 0.3);
     transition: background-color 0.3s ease;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+
 }
 
-.g_id_signin {
-    height: 100%;
-    width: 40%;
-    margin-top: 2%;
-}
+
 
 form input[type="text"]:focus,
 form input[type="email"]:focus,
@@ -309,7 +312,6 @@ a:hover {
     color: #FF6F00;
 
 }
-
 
 
 

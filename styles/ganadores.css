@@ -97,16 +97,7 @@ header img {
     color: #003366;
 }
 
-/* Publicidad */
-.publicidad {
-    flex-basis: 20%;
-    background-color: #F0F0F0;
-    text-align: center;
-    padding: 2%;
-    border-radius: 10px;
-    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
-    min-height: 100%;
-}
+
 
 /* Footer */
 footer {

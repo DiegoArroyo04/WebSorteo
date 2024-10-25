@@ -27,11 +27,11 @@
     <div id="countdown" class="countdown">
     </div>
     <div class="mainContent">
-        <div class="publicidad banner-carrusel" id="publicidad1">
+        <div class="publicidad" id="publicidad1">
 
         </div>
         <form method="get" id="formulario">
-            <h2 class="tituloSorteo">Sorteo 10 Smartphones VOLTREX </h2>
+            <h2 class="tituloSorteo"> ¡Sorteo 10 Smartphones VOLTREX! </h2>
             <input type="text" id="nombre" placeholder="Nombre" name="nombre" oninput="comprobarNombre()" required>
             <p id="parrafoVerificacionNombre" class="parrafoVerificacion"></p>
             <input type="text" id="apellidos" placeholder="Apellidos" name="apellidos" oninput="comprobarApellidos()"
@@ -48,11 +48,14 @@
                         Privacidad Y Protección De Datos</a></label>
             </div>
             <button id="participar" type="submit">Participar En El Sorteo</button>
-            <button id="botonGoogle" type="button"><i class="fab fa-google"></i>Autocompletar con Google</button>
+            <button id="botonGoogle" type="button">
+                <i class="fab fa-google"></i>
+                Autocompletar Con Google
+            </button>
 
         </form>
 
-        <div class="publicidad banner-carrusel" id="publicidad2">
+        <div class="publicidad" id="publicidad2">
 
         </div>
     </div>
@@ -181,7 +184,7 @@
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-
+    <script src="scripts/ganadores.js"></script>
     <script src="scripts/sorteo.js"></script>
 
 </body>

@@ -32,9 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
         publicidad();
         //Inicializar GSI
         initializeGSI(CLIENT_ID, SCOPES, tokenClient);
+
+
     };
 
-
+    validarUsuarioYaParticipa();
 });
 
 
@@ -144,6 +146,22 @@ function comprobarApellidos() {
 
     return validado;
 }
+async function validarUsuarioYaParticipa() {
+
+    /*REUTILIZO LA VARIABLE PARTICIPANTES Y LA FUNCION OBTENER PARTICIPANTES DEFINIDA EN GANADORES PARA NO DUPLICAR CODIGO*/
+    participantes = await obtenerParticipantes();
+
+    for (i = 0; i < participantes.length; i++) {
+        if (participantes.email == document.getElementById("email").value) {
+
+        }
+
+    }
+
+
+
+}
+
 
 function registrarBaseDatos() {
     const nombre = document.getElementById("nombre").value;
