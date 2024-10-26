@@ -25,16 +25,30 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    window.onload = function () {
-        // Inicia el contador cuando se cargue la página
-        iniciarCuentaRegresiva();
-        //CARGAR PUBLICIDAD
-        publicidad();
-        //Inicializar GSI
-        initializeGSI(CLIENT_ID, SCOPES, tokenClient);
 
 
-    };
+    // Inicia el contador cuando se cargue la página
+    iniciarCuentaRegresiva();
+    //CARGAR PUBLICIDAD
+    publicidad();
+    //Inicializar GSI
+    initializeGSI();
+
+    //MOSTRAR MODAL DE COOKIES SI NO SE HAN ACEPTADO
+    if (checkCookieConsent() == false) {
+        mostrarModalCookies();
+    }
+
+    // Verifica si las cookies están aceptadas y si el usuario está registrado
+    if ((checkCookieConsent() == true) && (getCookie("participaSorteo") == "true")) {
+        const nombre = getCookie("nombre");
+        const apellidos = getCookie("apellidos");
+        // Oculta el formulario
+        document.getElementById("formulario").style.display = "none";
+        // Muestra el mensaje de agradecimiento
+        document.getElementById("mensajeGracias").innerHTML = "¡Gracias por participar " + nombre + " " + apellidos + "!";
+        document.getElementById("agradecimientoPartipacion").style.display = "flex";
+    }
 
 
 });
@@ -58,6 +72,27 @@ async function validarFormulario(event) {
         //MOSTRAR MENSAJE CONFIRMACION 
         mostrarModalConfirmacion();
 
+
+        //SI EL USUARIO TIENE LAS COOKIES ACEPTADAS ENTONCES CREAMOS COOKIE DE PARTICIPACION
+        nombre = document.getElementById("nombre").value;
+        apellidos = document.getElementById("apellidos").value;
+
+        if (checkCookieConsent() == true) {
+            // Crear cookie para indicar que el usuario ha participado
+            setCookie("participaSorteo", "true", 30);
+            // Crear cookies para nombre y apellidos
+            setCookie("nombre", nombre, 30);
+            setCookie("apellidos", apellidos, 30);
+
+            nombre = getCookie("nombre");
+            apellidos = getCookie("apellidos");
+
+            // Oculta el formulario
+            document.getElementById("formulario").style.display = "none";
+            // Muestra el mensaje de agradecimiento
+            document.getElementById("mensajeGracias").innerHTML = "¡Gracias por participar " + nombre + " " + apellidos + "!";
+            document.getElementById("agradecimientoPartipacion").style.display = "flex";
+        }
 
         // Permitir el envío del formulario
         return true;
@@ -297,6 +332,7 @@ function mostrarModalError() {
 window.onclick = function (event) {
     const modalConfirmacion = document.getElementById("confirmationModal");
     const modalError = document.getElementById("errorModal");
+    const modalPoliticaPrivacidad = document.getElementById("privacyModal");
     if (event.target === modalConfirmacion) {
         modalConfirmacion.style.display = "none"; // Ocultar el modal de confirmacion
     }
@@ -304,12 +340,15 @@ window.onclick = function (event) {
     if (event.target === modalError) {
         modalError.style.display = "none"; // Ocultar el modal de confirmacion
     }
+    if (event.target === modalPoliticaPrivacidad) {
+        modalPoliticaPrivacidad.style.display = "none"; // Ocultar el modal de confirmacion
+    }
 };
 
 
 function iniciarCuentaRegresiva() {
     // Establece la fecha de finalización del sorteo 
-    const fechaFinalSorteo = new Date("Oct 26, 2024 18:25:00").getTime();
+    const fechaFinalSorteo = new Date("Oct 28, 2024 18:25:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {
@@ -433,5 +472,62 @@ function fetchUserData(accessToken) {
         }).catch(error => {
             console.error("Error al obtener los datos del usuario:", error);
         });
+}
+
+// Función para crear una cookie
+function setCookie(name, value, days) {
+    const fechaActual = new Date();
+    fechaActual.setTime(fechaActual.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + fechaActual.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+// Función para leer una cookie (devuelve su valor segun su nombre)
+function getCookie(name) {
+    //Prefijo cookie
+    const nameEQ = name + "=";
+    //obtenemos todas las cookies en un array
+    const cookiesArray = document.cookie.split(';');
+
+
+    for (i = 0; i < cookiesArray.length; i++) {
+        // Removemos espacios iniciales (en caso de que haya) del valor de la cookie actual
+        let c = cookiesArray[i].trim();
+
+        // Verificamos si esta cookie empieza con el prefijo de la cookie buscada
+        if (c.indexOf(nameEQ) === 0) {
+            // Si coincide, extraemos el valor de la cookie desde el índice donde termina el nombre y retorna ese valor
+            return c.substring(nameEQ.length, c.length);
+        }
+    }
+
+    //Devolvemos null si no se encuentra la cookie
+    return null;
+}
+
+// Función para comprobar si la cookie de consentimiento existe y el usuario la aceptado
+function checkCookieConsent() {
+    return getCookie("cookieConsent") === "true";
+}
+
+// Mostrar el modal de cookies
+function mostrarModalCookies() {
+    const modalCookies = document.getElementById("cookieModal");
+    modalCookies.style.display = "block";
+
+}
+
+// Función para aceptar cookies
+function acceptCookies() {
+    setCookie("cookieConsent", "true", 30); // Cookie dura 30 días
+    document.getElementById("cookieModal").style.display = "none";
+
+}
+
+// Función para rechazar cookies
+function rejectCookies() {
+    setCookie("cookieConsent", "false", 30);
+    document.getElementById("cookieModal").style.display = "none";
+
 }
 

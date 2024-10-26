@@ -67,6 +67,15 @@ header img {
 
 }
 
+h1 {
+    text-align: center;
+    font-size: 2vw;
+    font-weight: bold;
+    color: #003366;
+    padding-bottom: 5%;
+    padding-top: 0%;
+}
+
 
 
 .mainContent {
@@ -80,7 +89,7 @@ header img {
 
 
 form {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,6 +99,18 @@ form {
     box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
     height: auto;
     margin: 0% 3%;
+}
+
+.agradecimientoPartipacion {
+    flex-grow: 1;
+    display: none;
+    background-color: #FFFFFF;
+    padding: 3% 5%;
+    border-radius: 10px;
+    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
+    height: auto;
+    margin: 0% 3%;
+    min-height: 63vh;
 }
 
 form input {
@@ -250,6 +271,7 @@ footer {
     display: flex;
     align-items: center;
     width: 100%;
+
 }
 
 .footer-logo {
@@ -369,19 +391,14 @@ a:hover {
     width: 15vw;
     max-width: 100px;
     height: auto;
-    /* Mantiene la proporción */
     position: absolute;
-    /* Permite el posicionamiento dentro del modal */
     top: 36%;
-    /* Ajusta este valor según sea necesario */
     left: 47%;
     transform: translate(-50%, -50%);
-    /* Centra la imagen en relación a su propio ancho y alto */
-    /* Centra la imagen en relación a su propio ancho */
     animation: bounce 1s forwards;
-    /* Animación de rebote */
 }
 
+/*ANIMACION PARA CUANDO TE REGISTRAS*/
 @keyframes bounce {
 
     0%,
@@ -402,4 +419,40 @@ a:hover {
         transform: translateY(-5px);
         /* Rebote ligero */
     }
+}
+
+
+/* MODAL COOKIES */
+.cookie-modal {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    z-index: 1000;
+}
+
+.cookie-modal-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+.cookie-modal button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.cookie-modal button:hover {
+    background-color: #0056b3;
 }
