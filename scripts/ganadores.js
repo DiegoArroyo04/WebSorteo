@@ -16,11 +16,22 @@ window.onload = async function () {
     // Realiza el sorteo si no hay ganadores
     if (ganadores.length === 0) {
         realizarSorteo(participantes);
+    } else {
+        document.getElementById("ganador1").innerHTML = ganadores[0].nombre + " " + ganadores[0].apellidos;
+        document.getElementById("ganador2").innerHTML = ganadores[1].nombre + " " + ganadores[1].apellidos;
+        document.getElementById("ganador3").innerHTML = ganadores[2].nombre + " " + ganadores[2].apellidos;
+        document.getElementById("ganador4").innerHTML = ganadores[3].nombre + " " + ganadores[3].apellidos;
+        document.getElementById("ganador5").innerHTML = ganadores[4].nombre + " " + ganadores[4].apellidos;
+        document.getElementById("ganador6").innerHTML = ganadores[5].nombre + " " + ganadores[5].apellidos;
+        document.getElementById("ganador7").innerHTML = ganadores[6].nombre + " " + ganadores[6].apellidos;
+        document.getElementById("ganador8").innerHTML = ganadores[7].nombre + " " + ganadores[7].apellidos;
+        document.getElementById("ganador9").innerHTML = ganadores[8].nombre + " " + ganadores[8].apellidos;
+        document.getElementById("ganador10").innerHTML = ganadores[9].nombre + " " + ganadores[9].apellidos;
     }
 
+    const jsConfetti = new JSConfetti();
 
-    console.log(ganadores);
-
+    jsConfetti.addConfetti();
 };
 
 // Función para obtener los participantes desde el servidor
