@@ -34,24 +34,38 @@
 
             <h2 class="tituloSorteo"> ¡Sorteo 10 Smartphones VOLTREX! </h2>
 
-            <input type="text" id="nombre" placeholder="Nombre" name="nombre" oninput="comprobarNombre()" required>
-            <p id="parrafoVerificacionNombre" class="parrafoVerificacion"></p>
+            <div class="inputContenedor">
+                <input type="text" id="nombre" placeholder="Nombre" name="nombre" oninput="comprobarNombre()" required>
+                <i class="fas fa-times-circle iconoError" id="iconoErrorNombre"></i>
+                <p id="parrafoVerificacionNombre" class="parrafoVerificacion"></p>
+            </div>
 
-            <input type="text" id="apellidos" placeholder="Apellidos" name="apellidos" oninput="comprobarApellidos()"
-                required>
-            <p id="parrafoVerificacionApellidos" class="parrafoVerificacion"></p>
+            <div class="inputContenedor">
+                <input type="text" id="apellidos" placeholder="Apellidos" name="apellidos"
+                    oninput="comprobarApellidos()" required>
+                <i class="fas fa-times-circle iconoError" id="iconoErrorApellidos"></i>
+                <p id="parrafoVerificacionApellidos" class="parrafoVerificacion"></p>
+            </div>
 
-            <input type="email" id="email" placeholder="Correo Electrónico" name="email"
-                oninput="validarUsuarioYaParticipa()" required>
-            <p id="parrafoVerificacionEmail" class="parrafoVerificacion"></p>
+            <div class="inputContenedor">
+                <input type="email" id="email" placeholder="Correo Electrónico" name="email"
+                    oninput="validarUsuarioYaParticipa()" required>
+                <i class="fas fa-times-circle iconoError" id="iconoErrorCorreo"></i>
+                <p id="parrafoVerificacionEmail" class="parrafoVerificacion"></p>
+            </div>
 
-            <input type="number" id="telefono" placeholder="Teléfono" name="telefono"
-                oninput="comprobarTelefono(); validarUsuarioYaParticipa();" required>
-            <p id="parrafoVerificacionTlf" class="parrafoVerificacion"></p>
+            <div class="inputContenedor">
+                <input type="number" id="telefono" placeholder="Teléfono" name="telefono"
+                    oninput="comprobarTelefono(); validarUsuarioYaParticipa();" required>
+                <i class="fas fa-times-circle iconoError" id="iconoErrorTelefono"></i>
+                <p id="parrafoVerificacionTlf" class="parrafoVerificacion"></p>
+            </div>
+
 
             <div class="proteccionDatos">
                 <input type="checkbox" required id="aceptaProteccionDatos">
-                <label for="aceptaProteccionDatos">Acepto la <a href="#" id="abrirModalPoliticaPrivacidad">Política De
+                <label for="aceptaProteccionDatos">Acepto la <a href="#" id="abrirModalPoliticaPrivacidad">Política
+                        De
                         Privacidad Y Protección De Datos</a></label>
             </div>
             <button id="participar" type="submit">Participar En El Sorteo</button>

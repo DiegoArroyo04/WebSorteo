@@ -125,14 +125,16 @@ function comprobarTelefono() {
         document.getElementById("parrafoVerificacionTlf").style.display = "none";
         return true;
     } else if (patronCorrecto == false) {
+
         document.getElementById("parrafoVerificacionTlf").innerHTML = "Formato de telefono incorrecto.Los numeros en España comienzan por 6 7 8 o 9.";
         document.getElementById("parrafoVerificacionTlf").style.display = "block";
-        document.getElementById("parrafoVerificacionTlf").style.color = "red";
+
         return false;
     } else {
+
         document.getElementById("parrafoVerificacionTlf").innerHTML = "Longitud de telefono incorrecta.";
         document.getElementById("parrafoVerificacionTlf").style.display = "block";
-        document.getElementById("parrafoVerificacionTlf").style.color = "red";
+
         return false;
     }
 
@@ -146,9 +148,10 @@ function comprobarNombre() {
     for (i = 0; i < nombre.length; i++) {
         if (numeros.includes(nombre[i])) {
             validado = false;
+
             document.getElementById("parrafoVerificacionNombre").innerHTML = "Nombre inválido.Un nombre no contiene números";
             document.getElementById("parrafoVerificacionNombre").style.display = "block";
-            document.getElementById("parrafoVerificacionNombre").style.color = "red";
+
 
         }
     }
@@ -168,9 +171,9 @@ function comprobarApellidos() {
     for (i = 0; i < apellidos.length; i++) {
         if (numeros.includes(apellidos[i])) {
             validado = false;
+
             document.getElementById("parrafoVerificacionApellidos").innerHTML = "Apellidos inválidos.Los apellidos no contienen números";
             document.getElementById("parrafoVerificacionApellidos").style.display = "block";
-            document.getElementById("parrafoVerificacionApellidos").style.color = "red";
 
         }
     }
@@ -193,7 +196,6 @@ async function validarUsuarioYaParticipa() {
             validado = false;
             document.getElementById("parrafoVerificacionEmail").innerHTML = "¡Ya estas participando en el sorteo! Solamente se admite una participación.";
             document.getElementById("parrafoVerificacionEmail").style.display = "block";
-            document.getElementById("parrafoVerificacionEmail").style.color = "red";
         }
 
     }
@@ -204,7 +206,6 @@ async function validarUsuarioYaParticipa() {
             validado = false;
             document.getElementById("parrafoVerificacionTlf").innerHTML = "¡Ya estas participando en el sorteo! Solamente se admite una participación.";
             document.getElementById("parrafoVerificacionTlf").style.display = "block";
-            document.getElementById("parrafoVerificacionTlf").style.color = "red";
         }
 
     }

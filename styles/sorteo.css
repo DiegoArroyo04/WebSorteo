@@ -113,6 +113,29 @@ form {
     min-height: 63vh;
 }
 
+
+.inputContenedor {
+    position: relative;
+    width: 90%;
+    margin-bottom: 1em;
+}
+
+
+.iconoError {
+    position: absolute;
+    right: 12%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    display: inline;
+    font-size: 1.2vw;
+}
+
+.parrafoVerificacion {
+    color: red;
+    font-size: 0.9vw;
+}
+
 form input {
     width: 90%;
     margin: 1% 0;
