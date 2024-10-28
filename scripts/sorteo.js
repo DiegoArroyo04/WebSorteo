@@ -50,7 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("agradecimientoPartipacion").style.display = "flex";
     }
 
-
+    document.getElementById("iconoErrorNombre").style.display = "none";
+    document.getElementById("iconoErrorApellidos").style.display = "none";
+    document.getElementById("iconoErrorCorreo").style.display = "none";
+    document.getElementById("iconoErrorTelefono").style.display = "none";
 });
 
 
@@ -110,30 +113,42 @@ function comprobarTelefono() {
     var longitud = false;
     if (telefono === "") {
         document.getElementById("parrafoVerificacionTlf").style.display = "none";
+        document.getElementById("iconoErrorTelefono").style.display = "none";
+        document.getElementById("telefono").style.borderColor = "#003366";
+
         return false; // Aquí no hay nada que validar si está vacío
     }
     if (patronNumeros.includes(telefono[0])) {
         patronCorrecto = true;
         document.getElementById("parrafoVerificacionTlf").style.display = "none";
+        document.getElementById("iconoErrorTelefono").style.display = "none";
+        document.getElementById("telefono").style.borderColor = "#003366";
     }
     if (telefono.length == 9) {
         longitud = true;
         document.getElementById("parrafoVerificacionTlf").style.display = "none";
+        document.getElementById("iconoErrorTelefono").style.display = "none";
+        document.getElementById("telefono").style.borderColor = "#003366";
     }
 
     if ((patronCorrecto == true) && (longitud == true)) {
         document.getElementById("parrafoVerificacionTlf").style.display = "none";
+        document.getElementById("iconoErrorTelefono").style.display = "none";
+        document.getElementById("telefono").style.borderColor = "#003366";
         return true;
     } else if (patronCorrecto == false) {
 
         document.getElementById("parrafoVerificacionTlf").innerHTML = "Formato de telefono incorrecto.Los numeros en España comienzan por 6 7 8 o 9.";
         document.getElementById("parrafoVerificacionTlf").style.display = "block";
+        document.getElementById("iconoErrorTelefono").style.display = "inline";
+        document.getElementById("telefono").style.borderColor = "#003366";
 
         return false;
     } else {
 
         document.getElementById("parrafoVerificacionTlf").innerHTML = "Longitud de telefono incorrecta.";
         document.getElementById("parrafoVerificacionTlf").style.display = "block";
+        document.getElementById("iconoErrorTelefono").style.display = "inline";
 
         return false;
     }
@@ -151,6 +166,9 @@ function comprobarNombre() {
 
             document.getElementById("parrafoVerificacionNombre").innerHTML = "Nombre inválido.Un nombre no contiene números";
             document.getElementById("parrafoVerificacionNombre").style.display = "block";
+            document.getElementById("iconoErrorNombre").style.display = "inline";
+            document.getElementById("nombre").style.borderColor = "red";
+
 
 
         }
@@ -158,6 +176,9 @@ function comprobarNombre() {
 
     if (validado == true) {
         document.getElementById("parrafoVerificacionNombre").style.display = "none";
+        document.getElementById("iconoErrorNombre").style.display = "none";
+        document.getElementById("nombre").style.borderColor = "#003366";
+
     }
 
     return validado;
@@ -174,12 +195,16 @@ function comprobarApellidos() {
 
             document.getElementById("parrafoVerificacionApellidos").innerHTML = "Apellidos inválidos.Los apellidos no contienen números";
             document.getElementById("parrafoVerificacionApellidos").style.display = "block";
+            document.getElementById("iconoErrorApellidos").style.display = "inline";
+            document.getElementById("apellidos").style.borderColor = "red";
 
         }
     }
 
     if (validado == true) {
         document.getElementById("parrafoVerificacionApellidos").style.display = "none";
+        document.getElementById("iconoErrorApellidos").style.display = "none";
+        document.getElementById("apellidos").style.borderColor = "#003366";
     }
 
     return validado;
@@ -196,6 +221,8 @@ async function validarUsuarioYaParticipa() {
             validado = false;
             document.getElementById("parrafoVerificacionEmail").innerHTML = "¡Ya estas participando en el sorteo! Solamente se admite una participación.";
             document.getElementById("parrafoVerificacionEmail").style.display = "block";
+            document.getElementById("iconoErrorCorreo").style.display = "inline";
+            document.getElementById("email").style.borderColor = "red";
         }
 
     }
@@ -206,6 +233,8 @@ async function validarUsuarioYaParticipa() {
             validado = false;
             document.getElementById("parrafoVerificacionTlf").innerHTML = "¡Ya estas participando en el sorteo! Solamente se admite una participación.";
             document.getElementById("parrafoVerificacionTlf").style.display = "block";
+            document.getElementById("iconoErrorTelefono").style.display = "inline";
+            document.getElementById("telefono").style.borderColor = "red";
         }
 
     }
@@ -214,10 +243,14 @@ async function validarUsuarioYaParticipa() {
 
     if (validado == true) {
         document.getElementById("parrafoVerificacionEmail").style.display = "none";
+        document.getElementById("iconoErrorCorreo").style.display = "none";
+        document.getElementById("email").style.borderColor = "#003366";
 
         // Solo oculta si el formato es correcto y ademas no esta registrado
         if (comprobarTelefono() == true) {
             parrafoVerificacionTlf.style.display = "none";
+            document.getElementById("iconoErrorTelefono").style.display = "none";
+            document.getElementById("telefono").style.borderColor = "#003366";
         }
     }
 

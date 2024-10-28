@@ -37,7 +37,7 @@ header img {
 
 /* Contenido principal */
 .mainContent {
-    display: flex;
+
     align-items: stretch;
     width: 90%;
     margin: 2% auto;

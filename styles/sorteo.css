@@ -84,6 +84,7 @@ h1 {
     width: 90%;
     margin: 0 auto;
     padding: 2%;
+    height: 90vh;
 }
 
 
@@ -118,22 +119,27 @@ form {
     position: relative;
     width: 90%;
     margin-bottom: 1em;
+    display: inline-block;
 }
 
 
 .iconoError {
     position: absolute;
     right: 12%;
-    top: 50%;
+    top: 30%;
     transform: translateY(-50%);
     color: red;
-    display: inline;
+    display: none;
     font-size: 1.2vw;
 }
 
 .parrafoVerificacion {
     color: red;
     font-size: 0.9vw;
+    height: 1.5em;
+    margin-top: 0.5em;
+    width: 90%;
+
 }
 
 form input {
@@ -144,13 +150,13 @@ form input {
     border-radius: 8px;
     font-size: 1.1vw;
     font-family: 'Montserrat';
-
-}
-
-
-form input {
     color: #003366;
+
+
 }
+
+
+
 
 .parrafoVerificacion {
     text-align: left;
@@ -221,7 +227,6 @@ form input::placeholder {
     padding: 2%;
     border-radius: 10px;
     box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
-    min-height: 100%;
     cursor: pointer;
 
 }
