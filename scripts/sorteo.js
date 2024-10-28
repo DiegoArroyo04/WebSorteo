@@ -382,7 +382,7 @@ window.onclick = function (event) {
 
 function iniciarCuentaRegresiva() {
     // Establece la fecha de finalización del sorteo 
-    const fechaFinalSorteo = new Date("Oct 28, 2024 18:25:00").getTime();
+    const fechaFinalSorteo = new Date("Oct 30, 2024 18:25:00").getTime();
 
     // Actualiza el contador cada segundo
     const interval = setInterval(function () {

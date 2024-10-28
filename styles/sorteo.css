@@ -15,7 +15,7 @@ body {
 header {
     background: linear-gradient(180deg, #003366, #005599);
     color: #FFFFFF;
-    padding: 2%;
+    padding: 1% 5%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -24,8 +24,8 @@ header {
 }
 
 header img {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
 
 
 }
@@ -33,7 +33,7 @@ header img {
 
 
 .titulo h1 {
-    font-size: 2.4vw;
+    font-size: 1.8vw;
     font-weight: bold;
     color: #FFFFFF;
     margin: 0;
@@ -46,13 +46,12 @@ header img {
     font-size: 1.8vw;
     font-weight: bold;
     color: #FFFFFF;
-    background: linear-gradient(180deg, #003366, #005599);
-    padding: 1.5% 0;
-    border-radius: 15px;
+    background: linear-gradient(180deg, #006699, #00AEEF);
+    padding: 2% 0;
+    border-radius: 20px;
     margin: 2% auto;
-    width: 80%;
-    box-shadow: 0 0.5vw 1vw rgba(0, 0, 100, 0.3);
-
+    width: 70%;
+    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
 
 }
 
@@ -76,6 +75,9 @@ h1 {
     padding-top: 0%;
 }
 
+h2 {
+    color: #003366;
+}
 
 
 .mainContent {
@@ -84,7 +86,10 @@ h1 {
     width: 90%;
     margin: 0 auto;
     padding: 2%;
+    align-items: flex-start;
     height: 90vh;
+    margin-bottom: 10%;
+    min-height: 90vh;
 }
 
 
@@ -95,7 +100,7 @@ form {
     flex-direction: column;
     align-items: center;
     background-color: #FFFFFF;
-    padding: 3% 5%;
+    padding: 4%;
     border-radius: 10px;
     box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
     height: auto;
@@ -103,6 +108,7 @@ form {
 }
 
 .agradecimientoPartipacion {
+    flex: 1;
     flex-grow: 1;
     display: none;
     background-color: #FFFFFF;
@@ -111,9 +117,26 @@ form {
     box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
     height: auto;
     margin: 0% 3%;
-    min-height: 63vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    margin-bottom: 60%;
+
 }
 
+.premios {
+    text-align: center;
+    margin: 10%;
+
+
+}
+
+iframe {
+    margin: 10%;
+    width: 100%;
+    max-width: 100vh;
+    height: 50vh;
+}
 
 .inputContenedor {
     position: relative;
@@ -125,7 +148,7 @@ form {
 
 .iconoError {
     position: absolute;
-    right: 12%;
+    right: 3%;
     top: 30%;
     transform: translateY(-50%);
     color: red;
@@ -143,20 +166,31 @@ form {
 }
 
 form input {
-    width: 90%;
-    margin: 1% 0;
-    padding: 0.8%;
+    width: 100%;
+    margin: 1.2% 0;
+    padding: 0.8% 1.5%;
     border: 1px solid #003366;
     border-radius: 8px;
-    font-size: 1.1vw;
+    font-size: 1.2vw;
     font-family: 'Montserrat';
     color: #003366;
 
-
 }
 
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="number"]:focus {
+    outline: none;
+    box-shadow: 0 0.5vw 0.8vw rgba(0, 85, 153, 0.3);
+    border-color: #005599;
+}
 
-
+/*QUITAR FLECHAS SUBIR Y BAJAR INPUT NUMERICO+*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 .parrafoVerificacion {
     text-align: left;
@@ -176,17 +210,16 @@ form input {
 form button {
     background-color: #FF8C00;
     color: #FFFFFF;
-    border-radius: 50px;
+    border-radius: 25px;
     font-size: 1.1vw;
     border: none;
     cursor: pointer;
     width: 60%;
-    height: 100%;
-    margin-bottom: 3%;
+    margin: 1.2% 0;
     height: auto;
     box-shadow: 0 0.5vw 1vw rgba(0, 0, 100, 0.3);
-    transition: background-color 0.3s ease;
-    padding: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 1.2em 2em;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -196,18 +229,10 @@ form button {
 
 
 
-form input[type="text"]:focus,
-form input[type="email"]:focus,
-form input[type="number"]:focus {
-    outline: none;
-    box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
-}
-
-
-
-
 form button:hover {
     background-color: #FF6F00;
+    transform: scale(1.05);
+    box-shadow: 0 0.4vw 0.6vw rgba(255, 143, 0, 0.4);
 }
 
 form input::placeholder {
@@ -218,19 +243,25 @@ form input::placeholder {
 
 .publicidad {
     display: block !important;
-    /* Forzar el display por problemas en distintos navegadores */
     flex-basis: 20%;
     background-color: #FFFFFF;
     background-size: cover;
-    background-position: center bottom;
+    background-position: center center;
+    background-repeat: no-repeat;
     text-align: center;
     padding: 2%;
     border-radius: 10px;
     box-shadow: 0 0.4vw 0.6vw rgba(0, 0, 100, 0.3);
     cursor: pointer;
+    height: 100%;
+
 
 }
 
+.publicidad:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease-in-out;
+}
 
 
 
@@ -271,9 +302,10 @@ form input::placeholder {
     font-size: 1.1vw;
     text-align: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 40%;
+    left: 53%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 
@@ -294,11 +326,12 @@ form input::placeholder {
 footer {
     background-color: #003366;
     color: #FFFFFF;
-    padding: 2% 5%;
+    padding: 1.5% 5%;
     text-align: center;
     display: flex;
     align-items: center;
     width: 100%;
+    font-size: 0.85vw;
 
 }
 
@@ -334,10 +367,12 @@ footer {
 .footer-links a {
     color: #00AEEF;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
 .footer-links a:hover {
-    color: #FF6F00;
+    color: #FF8C00;
+    text-decoration: underline;
 }
 
 .footer-info {
@@ -354,12 +389,12 @@ footer {
 
 /* Enlaces */
 a {
-    color: #00AEEF;
+    color: #007ACC;
     text-decoration: none;
 }
 
 a:hover {
-    color: #FF6F00;
+    color: #FF8C00;
 
 }
 
@@ -381,7 +416,7 @@ a:hover {
 }
 
 .modalContent {
-    background-color: #fefefe;
+    background-color: #fff;
     padding: 2rem;
     border-radius: 10px;
     width: 90%;
@@ -392,9 +427,11 @@ a:hover {
     margin: auto;
 }
 
+
 .modalContent h2 {
     color: #003366;
 }
+
 
 .modalContent p {
     margin-bottom: 1.5rem;
@@ -409,10 +446,12 @@ a:hover {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
 #acceptButton:hover {
     background-color: #005599;
+
 }
 
 .success-gif {
