@@ -47,6 +47,31 @@ header img {
     padding: 2%;
 }
 
+/* Estilos para el contenedor de carga */
+.preload {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #007ACC;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    color: #FFFFFF;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+.preload.mostrar {
+    display: flex;
+}
+
+.preload.hidden {
+    display: none;
+}
+
 .ganadores {
     display: flex;
     flex-direction: column;

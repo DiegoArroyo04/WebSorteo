@@ -68,9 +68,9 @@ async function validarFormulario(event) {
         registrarBaseDatos();
 
 
-        /*MANDAR EMAIL CONFIRMACION REGISTRO
+        //MANDAR EMAIL CONFIRMACION REGISTRO
         mandarEmail(event.target);
-        */
+
 
         //MOSTRAR MENSAJE CONFIRMACION 
         mostrarModalConfirmacion();

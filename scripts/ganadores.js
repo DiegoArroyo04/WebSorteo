@@ -16,7 +16,11 @@ window.onload = async function () {
             // Realiza el sorteo si no hay ganadores
             if (ganadores.length === 0) {
                 realizarSorteo(participantes);
+
+
             } else {
+
+
                 document.getElementById("ganador1").innerHTML = ganadores[0].nombre + " " + ganadores[0].apellidos;
                 document.getElementById("ganador2").innerHTML = ganadores[1].nombre + " " + ganadores[1].apellidos;
                 document.getElementById("ganador3").innerHTML = ganadores[2].nombre + " " + ganadores[2].apellidos;
@@ -27,15 +31,42 @@ window.onload = async function () {
                 document.getElementById("ganador8").innerHTML = ganadores[7].nombre + " " + ganadores[7].apellidos;
                 document.getElementById("ganador9").innerHTML = ganadores[8].nombre + " " + ganadores[8].apellidos;
                 document.getElementById("ganador10").innerHTML = ganadores[9].nombre + " " + ganadores[9].apellidos;
+
+                // Ocultar la pantalla de carga
+                document.getElementById("preload").classList.add("hidden");
+
+                const jsConfetti = new JSConfetti();
+                jsConfetti.addConfetti();
+
+
+
             }
 
-            const jsConfetti = new JSConfetti();
-            jsConfetti.addConfetti();
+
         } catch (error) {
             console.error("Error en la carga de ganadores:", error);
         }
     }
 };
+
+//MANDAR CORREO DE ENHORABUENA A LOS GANADORES
+function mandarCorreoEnhorabuena(ganadorEmail, ganadorNombre, ganadorApellidos) {
+
+    const serviceID = 'service_ygs1sy4';
+    const templateID = 'template_0aqqah9';
+    var ganador = {
+        email: ganadorEmail, nombre: ganadorNombre, apellidos: ganadorApellidos
+    };
+
+    return emailjs.send(serviceID, templateID, ganador)
+        .then(() => {
+            console.log("Correo enviado")
+        }, (err) => {
+
+            console.log("Error " + err)
+        });
+
+}
 
 // Función para obtener los participantes desde el servidor
 async function obtenerParticipantes() {
@@ -54,7 +85,8 @@ async function obtenerParticipantes() {
 
 async function realizarSorteo(participantes) {
 
-
+    //MOSTRAR EL PRELOAD MIENTRAS SE REALIZA EL SORTEO
+    document.getElementById("preload").classList.add("mostrar");
 
     var ganadores = [];
 
@@ -80,6 +112,17 @@ async function realizarSorteo(participantes) {
     }
 
     await guardarGanadores(ganadores);
+
+    ganadores = await obtenerGanadores();
+
+    // Enviar correos con una espera de 3 segundos entre cada envío para no saturar
+    for (const ganador of ganadores) {
+        await new Promise(resolve => setTimeout(resolve, 3000)); // Espera de 3 segundos
+        mandarCorreoEnhorabuena(ganador.email, ganador.nombre, ganador.apellidos);
+    }
+
+    // Recargar la página después de realizar el sorteo
+    window.location.reload();
 
 }
 // Función para enviar los ganadores al servidor
