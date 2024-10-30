@@ -121,7 +121,7 @@ async function realizarSorteo(participantes) {
     // Enviar correos con una espera de 3 segundos entre cada envío para no saturar
     for (const ganador of ganadores) {
         await new Promise(resolve => setTimeout(resolve, 3000)); // Espera de 3 segundos
-        // mandarCorreoEnhorabuena(ganador.email, ganador.nombre, ganador.apellidos);
+        mandarCorreoEnhorabuena(ganador.email, ganador.nombre, ganador.apellidos);
     }
 
     // Recargar la página después de realizar el sorteo
