@@ -27,13 +27,13 @@ Para poner en marcha el proyecto en tu entorno local, sigue estos pasos:
 1. Clona este repositorio:
 
     ```bash
-    git clone https://github.com/tu_usuario/nombre-del-repositorio.git
+    git clone [https://github.com/DiegoArroyo04/WebSorteo.git]
     ```
 
 2. Navega al directorio del proyecto:
 
     ```bash
-    cd nombre-del-repositorio
+    cd webSorteo
     ```
 
 3. Instala las dependencias:
